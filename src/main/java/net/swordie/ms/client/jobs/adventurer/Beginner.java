@@ -84,14 +84,5 @@ public class Beginner extends Job {
         //chr.getSubJob() - 1 = dual blade, 2 = pirate, else = normal job
         cs.setPosMap(910000000);
 
-        /*
-        if (chr.getSubJob() == 1) {
-            cs.setPosMap(103050900);
-        } else if (chr.getSubJob() == 2) {
-            cs.setPosMap(3000600);
-        } else {
-            cs.setPosMap(4000011);
-        }
-         */
     }
 }

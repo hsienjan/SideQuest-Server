@@ -160,6 +160,7 @@ public class Kaiser extends Job {
         cs.setLevel(10);
         cs.setJob(6100);
         cs.setStr(49);
+        cs.setPosMap(910000000);
         Item secondary = ItemData.getItemDeepCopy(1352500);
         secondary.setBagIndex(10);
         chr.getAvatarData().getAvatarLook().getHairEquips().add(secondary.getItemId());

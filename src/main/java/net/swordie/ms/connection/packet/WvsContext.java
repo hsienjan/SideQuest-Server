@@ -675,12 +675,13 @@ public class WvsContext {
     public static OutPacket loadAccountIDOfCharacterFriendResult(Set<Friend> friends) {
         OutPacket outPacket = new OutPacket(OutHeader.LOAD_ACCOUNT_ID_OF_CHARACTER_FRIEND_RESULT);
 
+        log.info("starting LOAD_ACCOUNT_ID_OF_CHARACTER_FRIEND_RESULT");
         outPacket.encodeInt(friends.size());
         for(Friend fr : friends) {
             outPacket.encodeInt(fr.getFriendID());
             outPacket.encodeInt(fr.getFriendAccountID());
         }
-
+        log.info("ending LOAD_ACCOUNT_ID_OF_CHARACTER_FRIEND_RESULT");
         return outPacket;
     }
 

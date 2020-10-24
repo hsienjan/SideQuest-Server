@@ -124,7 +124,7 @@ public class Mercedes extends Job {
         Item item = ItemData.getItemDeepCopy(1352000); // Secondary
         item.setBagIndex(BodyPart.Shield.getVal());
         chr.getEquippedInventory().addItem(item);
-        chr.getAvatarData().getCharacterStat().setPosMap(910150000);
+        chr.getAvatarData().getCharacterStat().setPosMap(910000000);
 
         CharacterStat cs = chr.getAvatarData().getCharacterStat();
         cs.setLevel(10);

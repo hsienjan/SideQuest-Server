@@ -143,7 +143,7 @@ public class AngelicBuster extends Job {
         super.setCharCreationStats(chr);
         chr.setStat(Stat.level, 10);
         chr.setStat(Stat.dex, 49);
-        chr.getAvatarData().getCharacterStat().setPosMap(400000000);
+        chr.getAvatarData().getCharacterStat().setPosMap(910000000);
         chr.getAvatarData().getCharacterStat().setJob(JobConstants.JobEnum.ANGELIC_BUSTER1.getJobId());
         Item secondary = ItemData.getItemDeepCopy(1352601);
         secondary.setBagIndex(10);

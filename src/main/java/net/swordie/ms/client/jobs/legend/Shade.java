@@ -522,6 +522,6 @@ public class Shade extends Job {
     @Override
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);
-        chr.getAvatarData().getCharacterStat().setPosMap(927030050);
+        chr.getAvatarData().getCharacterStat().setPosMap(910000000);
     }
 }

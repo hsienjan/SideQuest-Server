@@ -398,9 +398,9 @@ public class Kinesis extends Job {
         Item item = ItemData.getItemDeepCopy(1353200); // Pawn Chess Piece
         item.setBagIndex(BodyPart.Shield.getVal());
         chr.getEquippedInventory().addItem(item);
-        cs.setLevel(10);
-        cs.setMaxHp(574);
-        cs.setHp(574);
-        cs.setInt(45);
+        cs.setPosMap(910000000);
+        cs.setLevel(1);
+        cs.setMaxHp(50);
+        cs.setHp(50);
     }
 }

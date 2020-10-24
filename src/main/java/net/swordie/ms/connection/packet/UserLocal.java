@@ -16,6 +16,7 @@ import net.swordie.ms.life.movement.MovementInfo;
 import net.swordie.ms.life.pet.Pet;
 import net.swordie.ms.util.Position;
 import net.swordie.ms.util.Util;
+import org.python.jline.internal.Log;
 
 import java.util.HashMap;
 import java.util.List;
@@ -470,7 +471,7 @@ public class UserLocal {
 
     public static OutPacket questResult(QuestType type, int questID, int npcTemplateID, int secondQuestID, boolean startNavigation) {
         OutPacket outPacket = new OutPacket(OutHeader.QUEST_RESULT);
-
+        Log.info("quest id= " + questID + ",npc templateID= " + npcTemplateID + ", secondQuestID= " + secondQuestID + ",starting navigation= " + startNavigation);
         outPacket.encodeByte(type.getVal());
         outPacket.encodeInt(questID);
         outPacket.encodeInt(npcTemplateID);

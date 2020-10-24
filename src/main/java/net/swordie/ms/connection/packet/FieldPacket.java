@@ -40,6 +40,7 @@ import java.util.*;
 public class FieldPacket {
 
     public static OutPacket funcKeyMappedManInit(FuncKeyMap funcKeyMap) {
+        //first script of the game (movement)
         OutPacket outPacket = new OutPacket(OutHeader.FUNC_KEY_MAPPED_MAN_INIT);
 
         if (funcKeyMap.getKeymap() == null || funcKeyMap.getKeymap().size() == 0) {

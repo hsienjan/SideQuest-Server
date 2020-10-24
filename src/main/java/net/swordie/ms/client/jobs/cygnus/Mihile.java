@@ -2,6 +2,7 @@ package net.swordie.ms.client.jobs.cygnus;
 
 import net.swordie.ms.client.Client;
 import net.swordie.ms.client.character.Char;
+import net.swordie.ms.client.character.CharacterStat;
 import net.swordie.ms.client.character.info.HitInfo;
 import net.swordie.ms.client.character.skills.Option;
 import net.swordie.ms.client.character.skills.Skill;
@@ -594,6 +595,7 @@ public class Mihile extends Job {
     @Override
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);
-        chr.getAvatarData().getCharacterStat().setPosMap(913070000);
+        chr.getAvatarData().getCharacterStat().setPosMap(910000000);
     }
+
 }

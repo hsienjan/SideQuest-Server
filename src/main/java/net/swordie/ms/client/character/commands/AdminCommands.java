@@ -2084,7 +2084,7 @@ public class AdminCommands {
             if (args.length < 1)
                 chr.chatMessage("syntax error. !exp <amount>");
             else
-                chr.addExp(Integer.parseInt(args[0]));
+                chr.addExp(Integer.parseInt(args[1]));
         }
     }
 
@@ -2099,14 +2099,14 @@ public class AdminCommands {
     @Command(names = {"setsubjob"}, requiredType = Admin)
     public static class SetSubJobCommand extends AdminCommand {
         public static void execute(Char chr, String[] args) {
-            chr.setSubJob(Integer.parseInt(args[0]));
+            chr.setSubJob(Integer.parseInt(args[1]));
         }
     }
 
     @Command(names = {"setfinaljob"}, requiredType = Admin)
     public static class SetFinalJobCommand extends AdminCommand {
         public static void execute(Char chr, String[] args) {
-            chr.setFinalJob(Integer.parseInt(args[0]));
+            chr.setFinalJob(Integer.parseInt(args[1]));
         }
     }
 

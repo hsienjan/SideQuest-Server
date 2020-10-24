@@ -7,6 +7,7 @@ public enum NpcMessageType {
     SayOk(0, false, false, ResponseType.Response),
     SayNext(0, false, true, ResponseType.Response),
     SayPrev(0, true, false, ResponseType.Response),
+    SayNextPrev(0,true,true, ResponseType.Response),
     Say(0, true, true, ResponseType.Response),
     SayImage(1, ResponseType.Response),
     AskYesNo(2, ResponseType.Response),

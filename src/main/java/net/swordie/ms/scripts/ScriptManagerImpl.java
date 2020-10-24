@@ -482,6 +482,9 @@ public class ScriptManagerImpl implements ScriptManager {
 		return sendSayImage(new String[]{image});
 	}
 
+
+	public int sendNextPrev(String text) {return sendGeneralSay(text, SayNextPrev);}
+
 	@Override
 	public int sendSayImage(String[] images) {
 		getNpcScriptInfo().setImages(images);

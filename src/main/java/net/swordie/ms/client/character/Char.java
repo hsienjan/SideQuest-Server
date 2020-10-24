@@ -82,6 +82,7 @@ import net.swordie.ms.world.shop.NpcShopDlg;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import sun.rmi.runtime.Log;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -1668,7 +1669,10 @@ public class Char {
 		//set max skills.
 		List<Skill> skills = new ArrayList<>();
 		for (Skill skill : SkillData.getSkillsByJob((short) id)){
+
 			byte maxLevel = (byte) skill.getMaxLevel();
+			if (this.getJob() == 221)
+				log.info("skill: " + skill.getSkillId() + ", maxlevel: " + maxLevel);
 			skill.setCurrentLevel(maxLevel);
 			skill.setMasterLevel(maxLevel);
 			skills.add(skill);
@@ -1689,11 +1693,6 @@ public class Char {
 		getAvatarData().getCharacterStat().setSubJob(id);
 
 	}
-
-    public int getFinalJob(int id){
-        return getAvatarData().getCharacterStat().getFinalJob();
-
-    }
 
 	public short getJob() {
 		return getAvatarData().getCharacterStat().getJob();
@@ -5110,53 +5109,381 @@ public class Char {
 
 	//Kfir - giving players their job automatically.
 	public void autoJob() {
-		this.chatMessage(Expedition, "level: " + this.getLevel() + "\njob: " + this.getJob() + "\nsubjob: "+ this.getSubJob());
-		int level = this.getLevel();
-		int job = this.getJob();
-		int subJob = this.getSubJob();
-
 		//Kfir ZONE! I will make it auto job advanced.
-		switch (level) {
-			case 10: {
-				String message = "#b Congrats on your 1st Job Advancement!!!#k\r\n\r\n";
-				message += "You are now level 10, and are ready to #bDestory#k the world!\r\n\r\n";
-				message += "You will get your next #rJob#k Automatically!\r\n";
-				write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
-				break;
-			}
-			case 20: {
-				String message;
-				if (getJob() == JobConstants.JobEnum.THIEF.getJobId() && getSubJob() == 1) {
-					this.getScriptManager().setJob((short)430);
-					message = "#bCongrats on your 1.5th Job Advancement#k\r\n\r\n";
-					message += "You've reached level 20, keep that way and get #bStronger#k!\r\n\r\n";
-					write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
-				}
-				message = "You've reached level 20, and can now use #b[Scroll Enhancement]#k!\r\n\r\n";
-				write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
-				break;
-			}
-			case 30: {
-				String message = "#b[Guide] 2nd Job Advancement#k\r\n\r\n";
-				message += "You've reached level 30, and are ready for your #b[2nd Job Advancement]#k!\r\n\r\n";
-				message += "Complete the #r[Job Advancement]#k quest to unlock your 2nd job advancement!\r\n";
-				write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
+		int level = this.getLevel();
+		int finalJob = this.getFinalJob();
 
-				message = "#b[Guide] Ability#k\r\n\r\n";
-				message += "You've reached level 30 and can now unlock #b[Abilities]#k!\r\n\r\n";
-				message += "Accept the quest #bFirst Ability - The Eye Opener#k from the Quest Notifier!\r\n";
+		if (level == 10) {
+			String message = "#b Congrats on your 1st Job Advancement!!!#k\r\n\r\n";
+			message += "You are now level 10, and are ready to #bDestory#k the world!\r\n\r\n";
+			message += "You will get your next #rJob#k Automatically!\r\n";
+			write(UserLocal.addPopupSay(9010000, 8000, message, "FarmSE.img/boxResult"));
+		}
+		else if (level == 20){
+			String message;
+			if (getFinalJob() == 434) {
+				this.getScriptManager().setJob((short) 430);
+				message = "#bCongrats on your 1.5th Job Advancement#k\r\n\r\n";
+				message += "You've reached level 20, keep that way and get #bStronger#k!\r\n\r\n";
 				write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
-				break;
 			}
-			case 31: {
-				String message = "#b[Guide] Traits#k\r\n\r\n";
-				message += "From level 30 and can now unlock #b[Traits]#k!\r\n\r\n";
-				message += "Open your #bProfession UI (Default Hotkey: B)#k and check your #b[Traits]#k!\r\n";
-				write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
-				break;
+			message = "You've reached level 20, and can now use #b[Scroll Enhancement]#k!\r\n\r\n";
+			write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
+		}
+		else if (level == 30){
+			switch (finalJob) {
+				case 112: {
+					getScriptManager().setJob((short) 110);
+					break;
+				}
+				case 122: {
+					getScriptManager().setJob((short) 120);
+					break;
+				}
+				case 132: {
+					getScriptManager().setJob((short) 130);
+					break;
+				}
+				case 212: {
+					getScriptManager().setJob((short) 210);
+					break;
+				}
+				case 222: {
+					getScriptManager().setJob((short) 220);
+					break;
+				}
+				case 232: {
+					getScriptManager().setJob((short) 230);
+					break;
+				}
+				case 312: {
+					getScriptManager().setJob((short) 310);
+					break;
+				}
+				case 322: {
+					getScriptManager().setJob((short) 320);
+					break;
+				}
+				case 412: {
+					getScriptManager().setJob((short) 410);
+					break;
+				}
+				case 422: {
+					getScriptManager().setJob((short) 420);
+					break;
+				}
+				case 434: {
+					getScriptManager().setJob((short) 431);
+					break;
+				}
+				case 512: {
+					getScriptManager().setJob((short) 510);
+					break;
+				}
+				case 522: {
+					getScriptManager().setJob((short) 520);
+					break;
+				}
+				case 532: {
+					getScriptManager().setJob((short) 530);
+					break;
+				}
+				case 572: {
+					getScriptManager().setJob((short) 570);
+					break;
+				}
+				case 1112: {
+					getScriptManager().setJob((short) 1110);
+					break;
+				}
+				case 1212: {
+					getScriptManager().setJob((short) 1210);
+					break;
+				}
+				case 1312: {
+					getScriptManager().setJob((short) 1310);
+					break;
+				}
+				case 1412: {
+					getScriptManager().setJob((short) 1410);
+					break;
+				}
+				case 1512: {
+					getScriptManager().setJob((short) 1510);
+					break;
+				}
+				case 2112: {
+					getScriptManager().setJob((short) 2110);
+					break;
+				}
+				case 2218: {
+					getScriptManager().setJob((short) 2212);
+					break;
+				}
+				case 2312: {
+					getScriptManager().setJob((short) 2310);
+					break;
+				}
+				case 2412: {
+					getScriptManager().setJob((short) 2410);
+					break;
+				}
+				case 2512: {
+					getScriptManager().setJob((short) 2510);
+					break;
+				}
+				case 2712: {
+					getScriptManager().setJob((short) 2710);
+					break;
+				}
+				case 3112: {
+					getScriptManager().setJob((short) 3110);
+					break;
+				}
+				case 3122: {
+					getScriptManager().setJob((short) 3120);
+					break;
+				}
+				case 3212: {
+					getScriptManager().setJob((short) 3210);
+					break;
+				}
+				case 3312: {
+					getScriptManager().setJob((short) 3310);
+					break;
+				}
+				case 3512: {
+					getScriptManager().setJob((short) 3510);
+					break;
+				}
+				case 3712: {
+					getScriptManager().setJob((short) 3710);
+					break;
+				}
+				case 3612: {
+					getScriptManager().setJob((short) 3610);
+					break;
+				}
+				case 4112: {
+					getScriptManager().setJob((short) 4110);
+					break;
+				}
+				case 4212: {
+					getScriptManager().setJob((short) 4210);
+					break;
+				}
+				case 5112: {
+					getScriptManager().setJob((short) 5110);
+					break;
+				}
+				case 6112: {
+					getScriptManager().setJob((short) 6110);
+					break;
+				}
+				case 6512: {
+					getScriptManager().setJob((short) 6510);
+					break;
+				}
+				case 10112: {
+					getScriptManager().setJob((short) 10110);
+					break;
+				}
+				case 11212: {
+					getScriptManager().setJob((short) 11210);
+					break;
+				}
+				case 14212: {
+					getScriptManager().setJob((short) 14210);
+					break;
+				}
+			}
+
+			String message = "#b Congrats on your 2st Job Advancement!!!#k\r\n\r\n";
+			message += "You are now level 30, Your job UPDATED Automatically!\r\n\r\n";
+			write(UserLocal.addPopupSay(9010000, 8000, message, "FarmSE.img/boxResult"));
+		}
+		else if (level == 45){
+			if (finalJob == 434) {
+				getScriptManager().setJob((short) 432);
+				String message = "#b Congrats on your 2.5th Job Advancement!!!#k\r\n\r\n";
+				write(UserLocal.addPopupSay(9010000, 8000, message, "FarmSE.img/boxResult"));
 			}
 		}
-	}
+		else if (level == 60){
+			switch (finalJob) {
+				case 112: {
+					getScriptManager().setJob((short) 111);
+					break;
+				}
+				case 122: {
+					getScriptManager().setJob((short) 121);
+					break;
+				}
+				case 132: {
+					getScriptManager().setJob((short) 131);
+					break;
+				}
+				case 212: {
+					getScriptManager().setJob((short) 211);
+					break;
+				}
+				case 222: {
+					getScriptManager().setJob((short) 221);
+					break;
+				}
+				case 232: {
+					getScriptManager().setJob((short) 231);
+					break;
+				}
+				case 312: {
+					getScriptManager().setJob((short) 311);
+					break;
+				}
+				case 322: {
+					getScriptManager().setJob((short) 321);
+					break;
+				}
+				case 412: {
+					getScriptManager().setJob((short) 411);
+					break;
+				}
+				case 422: {
+					getScriptManager().setJob((short) 421);
+					break;
+				}
+				case 434: {
+					getScriptManager().setJob((short) 433);
+					break;
+				}
+				case 512: {
+					getScriptManager().setJob((short) 511);
+					break;
+				}
+				case 522: {
+					getScriptManager().setJob((short) 521);
+					break;
+				}
+				case 532: {
+					getScriptManager().setJob((short) 531);
+					break;
+				}
+				case 572: {
+					getScriptManager().setJob((short) 571);
+					break;
+				}
+				case 1112: {
+					getScriptManager().setJob((short) 1111);
+					break;
+				}
+				case 1212: {
+					getScriptManager().setJob((short) 1211);
+					break;
+				}
+				case 1312: {
+					getScriptManager().setJob((short) 1311);
+					break;
+				}
+				case 1412: {
+					getScriptManager().setJob((short) 1411);
+					break;
+				}
+				case 1512: {
+					getScriptManager().setJob((short) 1511);
+					break;
+				}
+				case 2112: {
+					getScriptManager().setJob((short) 2111);
+					break;
+				}
+				case 2218: {
+					getScriptManager().setJob((short) 2214);
+					break;
+				}
+				case 2312: {
+					getScriptManager().setJob((short) 2311);
+					break;
+				}
+				case 2412: {
+					getScriptManager().setJob((short) 2411);
+					break;
+				}
+				case 2512: {
+					getScriptManager().setJob((short) 2511);
+					break;
+				}
+				case 2712: {
+					getScriptManager().setJob((short) 2711);
+					break;
+				}
+				case 3112: {
+					getScriptManager().setJob((short) 3111);
+					break;
+				}
+				case 3122: {
+					getScriptManager().setJob((short) 3121);
+					break;
+				}
+				case 3212: {
+					getScriptManager().setJob((short) 3211);
+					break;
+				}
+				case 3312: {
+					getScriptManager().setJob((short) 3311);
+					break;
+				}
+				case 3512: {
+					getScriptManager().setJob((short) 3511);
+					break;
+				}
+				case 3712: {
+					getScriptManager().setJob((short) 3711);
+					break;
+				}
+				case 3612: {
+					getScriptManager().setJob((short) 3611);
+					break;
+				}
+				case 4112: {
+					getScriptManager().setJob((short) 4111);
+					break;
+				}
+				case 4212: {
+					getScriptManager().setJob((short) 4211);
+					break;
+				}
+				case 5112: {
+					getScriptManager().setJob((short) 5111);
+					break;
+				}
+				case 6112: {
+					getScriptManager().setJob((short) 6111);
+					break;
+				}
+				case 6512: {
+					getScriptManager().setJob((short) 6511);
+					break;
+				}
+				case 10112: {
+					getScriptManager().setJob((short) 10111);
+					break;
+				}
+				case 11212: {
+					getScriptManager().setJob((short) 11211);
+					break;
+				}
+				case 14212: {
+					getScriptManager().setJob((short) 14211);
+					break;
+				}
+			}
 
+			String message = "#b Congrats on your 3rd Job Advancement!!!#k\r\n\r\n";
+			message += "You are now level 60, Go Kick some strong monsters!\r\n\r\n";
+			write(UserLocal.addPopupSay(9010000, 8000, message, "FarmSE.img/boxResult"));
+		}
+		else if (level == 120) {
+			getScriptManager().setJob((short) finalJob);
+		}
+	}
 
 }
