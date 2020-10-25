@@ -157,9 +157,6 @@ public class Kaiser extends Job {
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);
         CharacterStat cs = chr.getAvatarData().getCharacterStat();
-        cs.setLevel(10);
-        cs.setJob(6100);
-        cs.setStr(49);
         cs.setPosMap(910000000);
         Item secondary = ItemData.getItemDeepCopy(1352500);
         secondary.setBagIndex(10);

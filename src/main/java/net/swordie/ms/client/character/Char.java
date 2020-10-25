@@ -1663,16 +1663,16 @@ public class Char {
 		if (job == null) {
 			return;
 		}
+
 		getAvatarData().getCharacterStat().setJob(id);
 		setJobHandler(JobManager.getJobById((short) id, this));
 
+		//if we will have a problem with some people without their skill maxed, I Will fix it with another method calling maxskills.
 		//set max skills.
 		List<Skill> skills = new ArrayList<>();
 		for (Skill skill : SkillData.getSkillsByJob((short) id)){
 
 			byte maxLevel = (byte) skill.getMaxLevel();
-			if (this.getJob() == 221)
-				log.info("skill: " + skill.getSkillId() + ", maxlevel: " + maxLevel);
 			skill.setCurrentLevel(maxLevel);
 			skill.setMasterLevel(maxLevel);
 			skills.add(skill);
@@ -1683,6 +1683,7 @@ public class Char {
 		notifyChanges();
 
 	}
+
 //TODO NOT FINISHED
 	public void setFinalJob(int id){
         getAvatarData().getCharacterStat().setFinalJob(id);
@@ -5002,7 +5003,6 @@ public class Char {
 			if (setItemId > 0) {
 				int level = setIdToLevel.getOrDefault(setItemId, 0);
 				level++;
-				autoJob();
 				setIdToLevel.put(setItemId, level);
 			}
 		}
@@ -5035,7 +5035,6 @@ public class Char {
 			if (setItemId > 0) {
 				int level = setIdToLevel.getOrDefault(setItemId, 0);
 				level++;
-				autoJob();
 				setIdToLevel.put(setItemId, level);
 			}
 		}
@@ -5113,13 +5112,8 @@ public class Char {
 		int level = this.getLevel();
 		int finalJob = this.getFinalJob();
 
-		if (level == 10) {
-			String message = "#b Congrats on your 1st Job Advancement!!!#k\r\n\r\n";
-			message += "You are now level 10, and are ready to #bDestory#k the world!\r\n\r\n";
-			message += "You will get your next #rJob#k Automatically!\r\n";
-			write(UserLocal.addPopupSay(9010000, 8000, message, "FarmSE.img/boxResult"));
-		}
-		else if (level == 20){
+
+		if (level == 20){
 			String message;
 			if (getFinalJob() == 434) {
 				this.getScriptManager().setJob((short) 430);
@@ -5218,6 +5212,7 @@ public class Char {
 				}
 				case 2218: {
 					getScriptManager().setJob((short) 2212);
+					getScriptManager().setMaxSkills((short)2212);
 					break;
 				}
 				case 2312: {
@@ -5282,10 +5277,6 @@ public class Char {
 				}
 				case 6512: {
 					getScriptManager().setJob((short) 6510);
-					break;
-				}
-				case 10112: {
-					getScriptManager().setJob((short) 10110);
 					break;
 				}
 				case 11212: {
@@ -5397,6 +5388,7 @@ public class Char {
 				}
 				case 2218: {
 					getScriptManager().setJob((short) 2214);
+					getScriptManager().setMaxSkills((short)2214);
 					break;
 				}
 				case 2312: {
@@ -5463,10 +5455,7 @@ public class Char {
 					getScriptManager().setJob((short) 6511);
 					break;
 				}
-				case 10112: {
-					getScriptManager().setJob((short) 10111);
-					break;
-				}
+
 				case 11212: {
 					getScriptManager().setJob((short) 11211);
 					break;
@@ -5482,7 +5471,25 @@ public class Char {
 			write(UserLocal.addPopupSay(9010000, 8000, message, "FarmSE.img/boxResult"));
 		}
 		else if (level == 120) {
-			getScriptManager().setJob((short) finalJob);
+			if (finalJob == 2218){
+				getScriptManager().setJob((short) finalJob);
+				getScriptManager().setMaxSkills((short)2218);
+			}
+			//zero 2nd job
+			else if (finalJob == 10112)
+				getScriptManager().setJob((short) 10110);
+			else
+				getScriptManager().setJob((short) finalJob);
+
+		}
+		else if (level == 140){
+			if (finalJob == 10112)
+				getScriptManager().setJob((short) 10111);
+			}
+
+		else if (level == 170){
+			if (finalJob == 10112)
+				getScriptManager().setJob((short) 10112);
 		}
 	}
 

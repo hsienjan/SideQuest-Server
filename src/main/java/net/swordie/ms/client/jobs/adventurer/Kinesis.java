@@ -399,7 +399,6 @@ public class Kinesis extends Job {
         item.setBagIndex(BodyPart.Shield.getVal());
         chr.getEquippedInventory().addItem(item);
         cs.setPosMap(910000000);
-        cs.setLevel(1);
         cs.setMaxHp(50);
         cs.setHp(50);
     }

@@ -24,7 +24,7 @@ def skip_tutorial():
 	sm.removeEscapeButton()
 	sm.lockInGameUI(True)
 
-	if sm.sendAskYesNo("Would you like to skip the tutorial questline and instantly arrive at #m" + str(map_to_warp) + "#?"):
+	if sm.sendAskYesNo("Would you like to skip the tutorial questline 4 and instantly arrive at #m" + str(map_to_warp) + "#?"):
 		if sm.getChr().getLevel() < target_level:
 			sm.addLevel(target_level - sm.getChr().getLevel())
 

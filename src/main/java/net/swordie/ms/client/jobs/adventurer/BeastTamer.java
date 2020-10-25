@@ -861,6 +861,6 @@ public class BeastTamer extends Job {
         super.setCharCreationStats(chr);
         CharacterStat cs = chr.getAvatarData().getCharacterStat();
         cs.setPosMap(910000000);
-        cs.setJob(11212);
+        cs.setJob(11000);
     }
 }

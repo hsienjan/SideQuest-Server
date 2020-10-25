@@ -2,6 +2,7 @@ package net.swordie.ms.client.jobs.adventurer;
 
 import net.swordie.ms.client.Client;
 import net.swordie.ms.client.character.Char;
+import net.swordie.ms.client.character.CharacterStat;
 import net.swordie.ms.client.character.info.HitInfo;
 import net.swordie.ms.client.character.skills.*;
 import net.swordie.ms.client.character.skills.info.AttackInfo;
@@ -390,5 +391,13 @@ public class PinkBean extends Job {
     public void handleHit(Client c, InPacket inPacket, HitInfo hitInfo) {
 
         super.handleHit(c, inPacket, hitInfo);
+    }
+
+    @Override
+    public void setCharCreationStats(Char chr) {
+        super.setCharCreationStats(chr);
+        CharacterStat cs = chr.getAvatarData().getCharacterStat();
+        cs.setPosMap(910000000);
+        cs.setLevel(1);
     }
 }

@@ -81,8 +81,6 @@ public class Beginner extends Job {
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);
         CharacterStat cs = chr.getAvatarData().getCharacterStat();
-        //chr.getSubJob() - 1 = dual blade, 2 = pirate, else = normal job
         cs.setPosMap(910000000);
-
     }
 }

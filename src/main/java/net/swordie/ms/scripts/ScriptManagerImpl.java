@@ -686,6 +686,8 @@ public class ScriptManagerImpl implements ScriptManager {
 		Map<Stat, Object> stats = new HashMap<>();
 		stats.put(Stat.subJob, jobID);
 		chr.getClient().write(WvsContext.statChanged(stats));
+
+		setMaxSkills(jobID);
 	}
 
 	public void setMaxSkills(short jobID){
