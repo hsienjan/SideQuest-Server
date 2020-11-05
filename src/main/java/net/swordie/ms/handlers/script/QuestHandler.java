@@ -28,6 +28,8 @@ public class QuestHandler {
 
     @Handler(op = InHeader.USER_QUEST_REQUEST)
     public static void handleUserQuestRequest(Client c, InPacket inPacket) {
+        return;
+        /* kfir quest
         Char chr = c.getChr();
         QuestManager qm = chr.getQuestManager();
         byte type = inPacket.decodeByte();
@@ -60,6 +62,7 @@ public class QuestHandler {
                     break;
             }
         }
+
         if (questID == 0 || qt == null) {
             chr.chatMessage(String.format("Could not find quest %d.", questID));
             return;
@@ -112,6 +115,8 @@ public class QuestHandler {
         if (success) {
             chr.write(UserLocal.questResult(QuestType.QuestRes_Act_Success, questID, npcTemplateID, 0, false));
         }
+
+         */
     }
 
     @Handler(op = InHeader.USER_MEDAL_REISSUE_REQUEST)

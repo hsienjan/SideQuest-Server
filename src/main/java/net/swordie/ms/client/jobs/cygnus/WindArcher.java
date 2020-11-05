@@ -644,8 +644,11 @@ public class WindArcher extends Noblesse {
     @Override
     public void handleLevelUp() {
         super.handleLevelUp();
+        /*
         if (chr.getLevel() == 60) {
             chr.getQuestManager().addQuest(20880);
         }
+
+         */
     }
 }

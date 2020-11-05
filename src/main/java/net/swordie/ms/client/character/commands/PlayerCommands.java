@@ -14,6 +14,7 @@ import org.apache.log4j.LogManager;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static net.swordie.ms.enums.AccountType.Tester;
 import static net.swordie.ms.enums.ChatType.Mob;
 
 public class PlayerCommands {
@@ -44,6 +45,13 @@ public class PlayerCommands {
     public static class JoinEvent extends PlayerCommand {
         public static void execute(Char chr, String[] args) {
             InGameEventManager.getInstance().joinPublicEvent(chr);
+        }
+    }
+
+    @Command(names = {"train", "training", "maps"}, requiredType = AccountType.Player)
+    public static class Train extends PlayerCommand {
+        public static void execute(Char chr, String[] args) {
+            chr.getScriptManager().openNpc(9200001);
         }
     }
 

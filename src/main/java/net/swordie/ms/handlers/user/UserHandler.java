@@ -93,13 +93,18 @@ public class UserHandler {
 
     @Handler(op = InHeader.USER_GROWTH_HELPER_REQUEST)
     public static void handleUserGrowthRequestHelper(Client c, InPacket inPacket) {
-        Char chr = c.getChr();
+
+        c.getChr().dispose();
+        c.getChr().closeUI(UIType.UI_GROWTH_HELPER);
+        return;
+
+        /*Char chr = c.getChr();
         Field field = chr.getField();
         if ((field.getFieldLimit() & FieldOption.TeleportItemLimit.getVal()) > 0) {
             chr.dispose();
             return;
         }
-        short status = inPacket.decodeShort();
+
         if (status == 0) {
             // TODO: verify that this map is actually valid, otherwise players can warp to pretty much anywhere they want
             int mapleGuideMapId = inPacket.decodeInt();
@@ -115,6 +120,8 @@ public class UserHandler {
             //int write 0
             //int something?
         }
+
+         */
 
     }
 

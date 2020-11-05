@@ -192,10 +192,10 @@ public class ItemConstants {
     public static final Map<ItemJob, Map<Integer, Set<DropInfo>>> equipDropsPerLevel = new HashMap<>();
 
     static {
-        initConsumableDrops();
-        initEquipDrops();
+        //initConsumableDrops();
+        //initEquipDrops();
     }
-
+/*
     private static void initConsumableDrops() {
         consumableDropsPerLevel.put(0, Util.makeSet(
                 new DropInfo(2000046, 200), // Red Potion
@@ -242,7 +242,7 @@ public class ItemConstants {
             set.add(new DropInfo(drop.getId(), 100));
         }
     }
-
+*/
     public static int getGenderFromId(int nItemID) {
         int result;
 
@@ -451,7 +451,7 @@ public class ItemConstants {
 
     }
 
-    private static int getItemPrefix(int nItemID) {
+    public static int getItemPrefix(int nItemID) {
         return nItemID / 10000;
     }
 

@@ -519,9 +519,5 @@ public class Shade extends Job {
         chr.getField().broadcastPacket(UserRemote.effect(chr.getId(), Effect.skillUse(25111211, (byte) 1, 0)));
     }
 
-    @Override
-    public void setCharCreationStats(Char chr) {
-        super.setCharCreationStats(chr);
-        chr.getAvatarData().getCharacterStat().setPosMap(910000000);
-    }
+
 }

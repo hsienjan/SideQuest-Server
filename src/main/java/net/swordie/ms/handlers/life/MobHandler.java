@@ -381,11 +381,14 @@ public class MobHandler {
                     chr.write(FieldPacket.fieldEffect(FieldEffect.playSound("Party1/Clear", 100)));
                     chr.write(FieldPacket.removeBlowWeather());
                     chr.write(FieldPacket.blowWeather(5120118, "Looks like we all arrived in one piece. Now, get out of here before those pesky things start bothering you again."));
+
                     Quest quest = chr.getQuestManager().getQuestById(32628);
+                    /*
                     if (quest == null) {
                         quest = new Quest(32628, QuestStatus.Started);
                         chr.getQuestManager().addQuest(quest);
                     }
+                     */
                     quest.setProperty("guard1", "1");// needed to complete quest
                     chr.write(WvsContext.message(MessageType.QUEST_RECORD_EX_MESSAGE,
                             quest.getQRKey(), quest.getQRValue(), (byte) 0));

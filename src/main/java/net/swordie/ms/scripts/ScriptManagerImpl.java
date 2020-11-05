@@ -1879,6 +1879,7 @@ public class ScriptManagerImpl implements ScriptManager {
 		equip.updateToChar(chr);
 	}
 
+
 	@Override
 	public boolean hasItem(int id) {
 		return hasItem(id, 1);

@@ -141,7 +141,6 @@ public class AngelicBuster extends Job {
     @Override
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);
-        chr.getAvatarData().getCharacterStat().setPosMap(910000000);
         chr.getAvatarData().getCharacterStat().setJob(6001);
         Item secondary = ItemData.getItemDeepCopy(1352601);
         secondary.setBagIndex(10);

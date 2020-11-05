@@ -199,9 +199,12 @@ public class Zero extends Job {
             sp = 6; // double sp on levels ending in 3/6/9
             if (level == 110) {
                 chr.getQuestManager().completeQuest(QuestConstants.ZERO_WEAPON_WINDOW_QUEST); //enables weapon button
+                /*
                 Quest q = QuestData.createQuestFromId(QuestConstants.ZERO_SET_QUEST);
                 q.setQrValue(String.valueOf(0));
                 chr.getQuestManager().addQuest(q);
+
+                 */
             }
         }
         ExtendSP esp = chr.getAvatarData().getCharacterStat().getExtendSP();
@@ -246,12 +249,11 @@ public class Zero extends Job {
         cs.setMaxMp(100);
         cs.setMp(100);
         cs.setJob(10000);
-        cs.setPosMap(910000000);
         ExtendSP esp = chr.getAvatarData().getCharacterStat().getExtendSP();
         SPSet alphaSpSet = esp.getSpSet().get(0);
         SPSet betaSpSet = esp.getSpSet().get(1);
-        alphaSpSet.addSp(6);
-        betaSpSet.addSp(6);
+        alphaSpSet.addSp(0);
+        betaSpSet.addSp(0);
         Map<Stat, Object> stats = new HashMap<>();
         stats.put(Stat.mhp, chr.getStat(Stat.mhp));
         stats.put(Stat.mmp, chr.getStat(Stat.mmp));

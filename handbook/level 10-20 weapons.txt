@@ -1,0 +1,75 @@
+Starting Weapons: (lvl 10-20)
+
+~~~Main Weapon~~~
+Hand Cannon: 				1532000
+Gun: 						1492065
+Two Handed Sword: 			1402001
+One Handed Sword: 			1302001
+Two Handed Axe: 			1412001
+One Handed Axe: 			1312000
+Two Handed Mace: 			1422000
+One Handed Mace: 			1322000 - lvl 15
+Spear: 						1432000
+Pole arm: 					1442000
+Staff: 						1382000
+Wand: 						1372002 - lvl 18
+Bow: 						1452054
+CrossBow: 					1462047
+Claw: 						1472000
+Dagger: 					1332007
+Knuckle: 					1482000
+Soul Shooter (AB):			1222076 - lvl 20
+Dual Bowguns: 				1522000
+Heavy Sword (Zero): 		1562000
+Long Sword (Zero): 			1572000
+Katana (Hayato): 			1542000
+Desperado (Demon Avenger): 	1232001
+Arm Cannon (Blaster): 		1582000
+Whip Blade (Xenon): 		1242001
+Cane: 						1362001
+Katara (Dual Blades): 		1342023
+Shining Rod (Luminous): 	1212001
+Fan (Kanna): 				1552000
+Beast Tamer Scepter (BT): 	1252001
+Psy Limiter (Kinesis): 		1262000 
+
+~~~Secondary Weapon~~~
+Phantom: 					1352100
+Hero: 						1352200
+Paladin: 					1352210
+Dark Knight: 				1352220
+F&P Magician: 				1352230
+I&L Magician: 				1352240
+Bishop: 					1352250
+Hunter: 					1352260
+CrossBow: 					1352270
+Bandit: 					1352280
+Assassin: 					1352290
+Luminous: 					1352400
+Kaiser: 					1352500
+Angelic Buster: 			1352600
+Mechanics: 					1352700
+Hayato: 					1352800
+Beast Tamer: 				1352810
+Jett: 						1352820
+Brawler: 					1352900
+Gunslinger: 				1352910
+Cannoneer: 					1352920
+Aran: 						1352930
+Evan: 						1352940
+Battle Mage: 				1352950
+Wild Hunter: 				1352960
+Cygnus: 					1352970
+Mihile: 					1098000
+Demon Avenger/Slayer: 		1099000
+*Kanna/kinesis/dual blade/Xenon/Blaster/Dawn warrior/Zero/Mercedes/Shade    secondary missing
+
+
+
+
+~~~Use~~~
+Bullets: 					2330000
+Arrow for Bow: 				2060004
+Arrow for CrossBow: 		2061004
+Throwing Stars: 			2070010
+Mercedes Arrow: 			1352000

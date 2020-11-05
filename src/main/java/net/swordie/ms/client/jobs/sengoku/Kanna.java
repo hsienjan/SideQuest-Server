@@ -379,11 +379,4 @@ public class Kanna extends Job {
         tsm.sendResetStatPacket();
     }
 
-    @Override
-    public void setCharCreationStats(Char chr) {
-        super.setCharCreationStats(chr);
-        CharacterStat cs = chr.getAvatarData().getCharacterStat();
-        cs.setPosMap(910000000);
-    }
-
 }

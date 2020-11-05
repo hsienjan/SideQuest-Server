@@ -829,13 +829,13 @@ public class FieldPacket {
         return outPacket;
     }
 
-    public static void setQuickMoveInfo(List<QuickMoveInfo> quickMoveInfos) {
+    public static OutPacket setQuickMoveInfo(List<QuickMoveInfo> quickMoveInfos) {
         OutPacket outPacket = new OutPacket(OutHeader.SET_QUICK_MOVE_INFO);
-/*
+
         outPacket.encodeByte(quickMoveInfos.size());
         quickMoveInfos.forEach(qmi -> qmi.encode(outPacket));
-*/
-        //return outPacket;
+
+        return outPacket;
     }
 
     public static OutPacket groupMessage(GroupMessageType gmt, String from, String msg) {

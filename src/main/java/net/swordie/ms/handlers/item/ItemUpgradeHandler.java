@@ -511,9 +511,11 @@ public class ItemUpgradeHandler {
         if(scroll == null) {
             return;
         }
+        /* kfir
         ItemInfo scrollInfo = ItemData.getItemInfoByID(scroll.getItemId());
         int setId = scrollInfo.getScrollStats().getOrDefault(ScrollStat.setItemCategory, 0);
         boolean success = Util.succeedProp(scrollInfo.getScrollStats().getOrDefault(ScrollStat.success, 100), 100);
+
         if (setId != 0 && success) {
             QuestManager qm = chr.getQuestManager();
             if(qm.hasQuestInProgress(QuestConstants.ZERO_SET_QUEST) || qm.hasQuestCompleted(QuestConstants.ZERO_SET_QUEST)){
@@ -523,6 +525,7 @@ public class ItemUpgradeHandler {
             q.setQrValue(String.valueOf(setId));
             qm.addQuest(q);
         }
+        */
         chr.consumeItem(scroll);
         chr.dispose();
     }

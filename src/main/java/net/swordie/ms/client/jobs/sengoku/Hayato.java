@@ -673,12 +673,6 @@ public class Hayato extends Job {
     }
 
     @Override
-    public void setCharCreationStats(Char chr) {
-        super.setCharCreationStats(chr);
-        CharacterStat cs = chr.getAvatarData().getCharacterStat();
-        cs.setPosMap(910000000);
-    }
-    @Override
     public void handleLevelUp() {
         super.handleLevelUp();
         if (chr.getLevel() == 60) {

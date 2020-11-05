@@ -2245,6 +2245,7 @@ public class Char {
 	 *
 	 * @param item The Item to equip.
 	 */
+	/*
 	public void unequip(Item item) {
 		AvatarLook al = getAvatarData().getAvatarLook();
 		int itemID = item.getItemId();
@@ -2287,12 +2288,52 @@ public class Char {
 		}
 	}
 
+	 */
+
+	public void unequip(Item item) {
+		AvatarLook al = getAvatarData().getAvatarLook();
+		int itemID = item.getItemId();
+		getInventoryByType(EQUIPPED).removeItem(item);
+		getInventoryByType(EQUIP).addItem(item);
+		int replacement = item.isCash() ?
+				getEquippedInventory().getItems().stream().mapToInt(Item::getItemId)
+						.filter(i -> ItemConstants.getItemPrefix(i) == ItemConstants.getItemPrefix(itemID)).
+						findFirst().orElse(-1)
+				: -1;
+		al.removeItem(itemID, item.isCash(), replacement);
+		byte maskValue = AvatarModifiedMask.AvatarLook.getVal();
+		getField().broadcastPacket(UserRemote.avatarModified(this, maskValue, (byte) 0), this);
+		if (getTemporaryStatManager().hasStat(SoulMP) && ItemConstants.isWeapon(item.getItemId())) {
+			getTemporaryStatManager().removeStat(SoulMP, false);
+			getTemporaryStatManager().removeStat(FullSoulMP, false);
+			getTemporaryStatManager().sendResetStatPacket();
+		}
+		List<Skill> skills = new ArrayList<>();
+		for (ItemSkill itemSkill : ItemData.getEquipById(item.getItemId()).getItemSkills()) {
+			Skill skill = getSkill(itemSkill.getSkill());
+			skill.setCurrentLevel(0);
+			removeSkill(itemSkill.getSkill());
+			skill.setCurrentLevel(-1); // workaround to remove skill from window without a cc
+			skills.add(skill);
+		}
+		if (skills.size() > 0) {
+			getClient().write(WvsContext.changeSkillRecordResult(skills, true, false, false, false));
+		}
+		int equippedSummonSkill = ItemConstants.getEquippedSummonSkillItem(item.getItemId(), getJob());
+		if (equippedSummonSkill != 0) {
+			getField().removeSummon(equippedSummonSkill, getId());
+
+			getTemporaryStatManager().removeStatsBySkill(equippedSummonSkill);
+			getTemporaryStatManager().removeStatsBySkill(getTemporaryStatManager().getOption(RepeatEffect).rOption);
+		}
+	}
+
 	/**
 	 * Equips an {@link Item}. Ensures that the hairEquips and both inventories get updated.
 	 *
 	 * @param item The Item to equip.
 	 */
-	public boolean equip(Item item) {
+	/*public boolean equip(Item item) {
 		Equip equip = (Equip) item;
 		if (equip.hasSpecialAttribute(EquipSpecialAttribute.Vestige)) {
 			return false;
@@ -2359,6 +2400,54 @@ public class Char {
 				getField().spawnLife(getAndroid(), null);
 			}
 		}
+		return true;
+	}*/
+
+	public boolean equip(Item item) {
+		Equip equip = (Equip) item;
+		if (equip.hasSpecialAttribute(EquipSpecialAttribute.Vestige)) {
+			return false;
+		}
+		if (equip.isEquipTradeBlock()) {
+			equip.setTradeBlock(true);
+			equip.setEquipTradeBlock(false);
+			equip.setEquippedDate(FileTime.currentTime());
+			equip.addAttribute(EquipAttribute.Untradable);
+		}
+		AvatarLook al = getAvatarData().getAvatarLook();
+
+		int itemID = item.getItemId();
+		getInventoryByType(EQUIP).removeItem(item);
+		getInventoryByType(EQUIPPED).addItem(item);
+		al.addItem(itemID, item.isCash());
+		if (!equip.hasAttribute(EquipAttribute.NoNonCombatStatGain) && equip.getCharmEXP() != 0) {
+			addStatAndSendPacket(Stat.charmEXP, equip.getCharmEXP());
+			equip.addAttribute(EquipAttribute.NoNonCombatStatGain);
+		}
+		List<Skill> skills = new ArrayList<>();
+		for (ItemSkill itemSkill : ItemData.getEquipById(equip.getItemId()).getItemSkills()) {
+			Skill skill = SkillData.getSkillDeepCopyById(itemSkill.getSkill());
+			if (skill != null) {
+				byte slv = itemSkill.getSlv();
+				// support for Tower of Oz rings
+				if (equip.getLevel() > 0) {
+					slv = (byte) Math.min(equip.getLevel(), skill.getMaxLevel());
+				}
+				skill.setCurrentLevel(slv);
+				skills.add(skill);
+				addSkill(skill);
+			}
+		}
+		if (skills.size() > 0) {
+			getClient().write(WvsContext.changeSkillRecordResult(skills, true, false, false, false));
+		}
+		int equippedSummonSkill = ItemConstants.getEquippedSummonSkillItem(equip.getItemId(), getJob());
+		if (equippedSummonSkill != 0) {
+			getJobHandler().handleSkill(getClient(), equippedSummonSkill, (byte) 1, null);
+		}
+		byte maskValue = AvatarModifiedMask.AvatarLook.getVal();
+		getField().broadcastPacket(UserRemote.avatarModified(this, maskValue, (byte) 0), this);
+		initSoulMP();
 		return true;
 	}
 
@@ -2697,7 +2786,6 @@ public class Char {
 	 * @param eii    The info to send to the client
 	 */
 	public void addExp(long amount, ExpIncreaseInfo eii) {
-		this.chatMessage("you gained " + amount + " exp.");
 		if (amount <= 0) {
 			return;
 		}
@@ -3084,6 +3172,7 @@ public class Char {
 	 *
 	 * @param item The Item to consume, which is currently in the Char's inventory.
 	 */
+	/*
 	public void consumeItem(Item item) {
 		Inventory inventory = getInventoryByType(item.getInvType());
 		// data race possible
@@ -3104,6 +3193,28 @@ public class Char {
 		}
 		setBulletIDForAttack(calculateBulletIDForAttack(1));
 	}
+
+	 */
+
+	public void consumeItem(Item item) {
+		Inventory inventory = getInventoryByType(item.getInvType());
+		// data race possible
+		if (item.getQuantity() <= 1 && !ItemConstants.isThrowingItem(item.getItemId())) {
+			item.setQuantity(0);
+			inventory.removeItem(item);
+			short bagIndex = (short) item.getBagIndex();
+			if (item.getInvType() == EQUIPPED) {
+				getAvatarData().getAvatarLook().removeItem(item.getItemId(), item.isCash(), -1);
+				bagIndex = (short) -bagIndex;
+			}
+			write(WvsContext.inventoryOperation(true, false, Remove, bagIndex, (byte) 0, 0, item));
+		} else {
+			item.setQuantity(item.getQuantity() - 1);
+			write(WvsContext.inventoryOperation(true, false, UpdateQuantity, (short) item.getBagIndex(), (byte) -1, 0, item));
+		}
+		setBulletIDForAttack(calculateBulletIDForAttack());
+	}
+
 
 	/**
 	 * Consumes an item of this Char with the given id. Will do nothing if the Char doesn't have the
@@ -3573,6 +3684,48 @@ public class Char {
 		} else if (GameConstants.getMaplerunnerField(fromField) > 0 && GameConstants.getMaplerunnerField(toField) <= 0) {
 			write(FieldPacket.closeUI(UIType.UI_PLATFORM_STAGE_LEAVE));
 		}
+	}
+	public void closeUI(UIType uiType){
+		write(FieldPacket.closeUI(uiType));
+	}
+	public void closeUI(int uiID){
+		write(FieldPacket.closeUI(uiID));
+	}
+	public void openUI(int uiID){
+		write(FieldPacket.openUI(uiID));
+	}
+	public void closeUIRange(int start, int end){
+		for (int i = start; i < end; i++){
+			write(FieldPacket.closeUI(i));
+		}
+	}
+	public void openUIRange(int start, int end){
+		for (int i = start; i < end; i++){
+			write(FieldPacket.openUI(i));
+		}
+	}
+
+	public int calculateBulletIDForAttack() {
+		Item weapon = getEquippedInventory().getFirstItemByBodyPart(BodyPart.Weapon);
+		if (weapon == null) {
+			return 0;
+		}
+		Predicate<Item> p;
+		int id = weapon.getItemId();
+
+		if (ItemConstants.isClaw(id)) {
+			p = i -> ItemConstants.isThrowingStar(i.getItemId());
+		} else if (ItemConstants.isBow(id)) {
+			p = i -> ItemConstants.isBowArrow(i.getItemId());
+		} else if (ItemConstants.isXBow(id)) {
+			p = i -> ItemConstants.isXBowArrow(i.getItemId());
+		} else if (ItemConstants.isGun(id)) {
+			p = i -> ItemConstants.isBullet(i.getItemId());
+		} else {
+			return 0;
+		}
+		Item i = getConsumeInventory().getItems().stream().sorted(Comparator.comparing(Item::getBagIndex)).filter(p).findFirst().orElse(null);
+		return i != null ? i.getItemId() : 0;
 	}
 
 	public int calculateBulletIDForAttack(int requiredAmount) {
@@ -5111,6 +5264,8 @@ public class Char {
 		//Kfir ZONE! I will make it auto job advanced.
 		int level = this.getLevel();
 		int finalJob = this.getFinalJob();
+		if (finalJob == -1)
+			return;
 
 
 		if (level == 20){
@@ -5125,6 +5280,9 @@ public class Char {
 			write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
 		}
 		else if (level == 30){
+			CharacterPotentialMan pm = this.getPotentialMan();
+			Integer integer = 1;
+			pm.addPotential(pm.generateRandomPotential(integer.byteValue()));
 			switch (finalJob) {
 				case 112: {
 					getScriptManager().setJob((short) 110);
@@ -5212,7 +5370,6 @@ public class Char {
 				}
 				case 2218: {
 					getScriptManager().setJob((short) 2212);
-					getScriptManager().setMaxSkills((short)2212);
 					break;
 				}
 				case 2312: {
@@ -5301,6 +5458,9 @@ public class Char {
 			}
 		}
 		else if (level == 60){
+			CharacterPotentialMan pm = this.getPotentialMan();
+			Integer integer = 2;
+			pm.addPotential(pm.generateRandomPotential(integer.byteValue()));
 			switch (finalJob) {
 				case 112: {
 					getScriptManager().setJob((short) 111);
@@ -5470,26 +5630,46 @@ public class Char {
 			message += "You are now level 60, Go Kick some strong monsters!\r\n\r\n";
 			write(UserLocal.addPopupSay(9010000, 8000, message, "FarmSE.img/boxResult"));
 		}
-		else if (level == 120) {
+		else if (level == 100) {
+			CharacterPotentialMan pm = this.getPotentialMan();
+			Integer integer = 3;
+			pm.addPotential(pm.generateRandomPotential(integer.byteValue()));
 			if (finalJob == 2218){
 				getScriptManager().setJob((short) finalJob);
 				getScriptManager().setMaxSkills((short)2218);
+				this.setFinalJob(-1);
 			}
-			//zero 2nd job
-			else if (finalJob == 10112)
-				getScriptManager().setJob((short) 10110);
-			else
+			else {
 				getScriptManager().setJob((short) finalJob);
-
+				this.setFinalJob(-1);
+			}
 		}
-		else if (level == 140){
-			if (finalJob == 10112)
+		//zero jobs:
+		else if (level == 120){
+			if (finalJob == 10112){
+				CharacterPotentialMan pm = this.getPotentialMan();
+				Integer integer = 1;
+				pm.addPotential(pm.generateRandomPotential(integer.byteValue()));
 				getScriptManager().setJob((short) 10111);
 			}
+		}
+		else if (level == 140){
+			if (finalJob == 10112){
+				CharacterPotentialMan pm = this.getPotentialMan();
+				Integer integer = 2;
+				pm.addPotential(pm.generateRandomPotential(integer.byteValue()));
+				getScriptManager().setJob((short) 10111);
+			}
+		}
 
 		else if (level == 170){
-			if (finalJob == 10112)
+			if (finalJob == 10112){
+				CharacterPotentialMan pm = this.getPotentialMan();
+				Integer integer = 3;
+				pm.addPotential(pm.generateRandomPotential(integer.byteValue()));
 				getScriptManager().setJob((short) 10112);
+				this.setFinalJob(-1);
+			}
 		}
 	}
 

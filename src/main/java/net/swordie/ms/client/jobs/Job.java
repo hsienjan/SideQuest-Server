@@ -658,7 +658,7 @@ public abstract class Job {
 		if (level >= 50) {
 			chr.addHonorExp(700 + ((chr.getLevel() - 50) / 10) * 100);
 		}
-		/*cancled the below lvl 50 giving 4 str and 1 dex.
+		/*canceled the below lvl 50 giving 4 str and 1 dex.
 		else {
 			if (level >= 6 &) {
 				chr.addStat(Stat.str, 4);
@@ -726,7 +726,7 @@ public abstract class Job {
 		characterStat.setMp(5);
 		characterStat.setMaxMp(5);
                 
-		characterStat.setPosMap(100000000);// should be handled for eah job not here
+		characterStat.setPosMap(820000000);// should be handled for each job not here
 		Item whitePot = ItemData.getItemDeepCopy(2000002);
 		whitePot.setQuantity(100);
 		chr.addItemToInventory(whitePot);

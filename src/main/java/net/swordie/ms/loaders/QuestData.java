@@ -13,6 +13,7 @@ import net.swordie.ms.enums.Stat;
 import net.swordie.ms.loaders.containerclasses.ItemInfo;
 import net.swordie.ms.loaders.containerclasses.QuestInfo;
 import org.apache.log4j.LogManager;
+import org.python.jline.internal.Log;
 import org.w3c.dom.Node;
 import net.swordie.ms.util.Util;
 import net.swordie.ms.util.XMLApi;
@@ -31,6 +32,7 @@ public class QuestData {
     private static final boolean LOG_UNKS = false;
 
     public static void loadQuestsFromWZ() {
+        Log.error("SOMEONE WANT ME TO LOAD QUESTS");
         String wzDir = String.format("%s/Quest.wz/", ServerConstants.WZ_DIR);
         String checkDir = wzDir + "Check.img.xml";
         File file = new File(checkDir);

@@ -962,13 +962,7 @@ public class Demon extends Job {
         super.handleHit(c, inPacket, hitInfo);
     }
 
-    // Character creation related methods ---------------------------------------------------------------------------------------------
-    @Override
-    public void setCharCreationStats(Char chr) {
-        super.setCharCreationStats(chr);
-        chr.getAvatarData().getCharacterStat().setPosMap(910000000);
 
-    }
 
 
 }

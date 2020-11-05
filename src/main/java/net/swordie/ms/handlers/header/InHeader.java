@@ -1049,7 +1049,10 @@ public enum InHeader {
             DRAGON_MOVE,
             USER_HIT,
             USER_EMOTION,
-            USER_B2_BODY_REQUEST
+            USER_B2_BODY_REQUEST,
+            FISHING_INFO,
+            MOB_LIFTING_END
+
     );
 
     private short value;

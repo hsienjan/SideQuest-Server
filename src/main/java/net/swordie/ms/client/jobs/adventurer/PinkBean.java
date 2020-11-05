@@ -393,11 +393,4 @@ public class PinkBean extends Job {
         super.handleHit(c, inPacket, hitInfo);
     }
 
-    @Override
-    public void setCharCreationStats(Char chr) {
-        super.setCharCreationStats(chr);
-        CharacterStat cs = chr.getAvatarData().getCharacterStat();
-        cs.setPosMap(910000000);
-        cs.setLevel(1);
-    }
 }

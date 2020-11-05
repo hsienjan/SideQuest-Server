@@ -433,13 +433,47 @@ public class AvatarLook {
         this.kaiserTailID = kaiserTailID;
     }
 
-    public void removeItem(int itemID) {
+    public void removeItem(int itemID, boolean isCash, int replacement) {
         List<Integer> hairEquips = getHairEquips();
         if (ItemConstants.isWeapon(itemID)) {
-            setWeaponId(0);
+            if (isCash) {
+                if (getWeaponStickerId() == itemID) {
+                    setWeaponStickerId(0);
+                }
+            } else {
+                if (getWeaponId() == itemID) {
+                    setWeaponId(0);
+                }
+            }
         }
         if (hairEquips.contains(itemID)) {
             hairEquips.remove((Integer) itemID);
+        }
+        if (isCash && replacement != -1) {
+            hairEquips.add(replacement);
+        }
+    }
+
+    public void addItem(int itemID, boolean isCash) {
+        //remove normal item of same slot if adding cash
+        if (isCash) {
+            int toRemove = hairEquips.stream().filter(i -> ItemConstants.getItemPrefix(i) == ItemConstants.getItemPrefix(itemID)).findFirst().orElse(-1);
+            if (toRemove != -1) {
+                hairEquips.remove(Integer.valueOf(toRemove));
+            }
+        }
+
+        if (ItemConstants.isWeapon(itemID)) {
+            if (isCash) {
+                setWeaponStickerId(itemID);
+            } else {
+                setWeaponId(itemID);
+            }
+        }
+        if (!hairEquips.contains(itemID)) {
+            if (isCash || hairEquips.stream().noneMatch(i -> ItemConstants.getItemPrefix(i) == ItemConstants.getItemPrefix(itemID))) {
+                hairEquips.add(itemID);
+            }
         }
     }
 }

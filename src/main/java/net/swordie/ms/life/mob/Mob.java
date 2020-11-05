@@ -1738,7 +1738,7 @@ public class Mob extends Life {
         }
 
         // Random portal spawn
-        if (getField().isChannelField() && chr.getNextRandomPortalTime() <= System.currentTimeMillis()
+        /*if (getField().isChannelField() && chr.getNextRandomPortalTime() <= System.currentTimeMillis()
                 && Util.succeedProp(GameConstants.RANDOM_PORTAL_SPAWN_CHANCE, 1000)) {
             chr.setNextRandomPortalTime(System.currentTimeMillis() + GameConstants.RANDOM_PORTAL_COOLTIME);
             // 50% chance for inferno/yellow portal
@@ -1752,6 +1752,7 @@ public class Mob extends Life {
             field.addLife(randomPortal);
             chr.write(RandomPortalPool.created(randomPortal));
         }
+         */
     }
 
     public boolean isEscortMob() {

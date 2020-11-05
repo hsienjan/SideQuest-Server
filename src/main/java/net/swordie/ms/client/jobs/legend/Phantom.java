@@ -126,7 +126,6 @@ public class Phantom extends Job {
         super.setCharCreationStats(chr);
         chr.setStolenSkills(new HashSet<>());
         chr.setChosenSkills(new HashSet<>());
-        chr.getAvatarData().getCharacterStat().setPosMap(910000000);
     }
 
     // Buff related methods --------------------------------------------------------------------------------------------

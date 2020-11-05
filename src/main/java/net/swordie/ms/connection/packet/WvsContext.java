@@ -950,6 +950,7 @@ public class WvsContext {
     }
 
     public static OutPacket townPortal(TownPortal townPortal) {
+
         OutPacket outPacket = new OutPacket(OutHeader.TOWN_PORTAL); // As a response to Enter_TP_Request, creates the Door in the TownField
 
         outPacket.encodeInt(townPortal.getTownFieldId()); // townFieldId

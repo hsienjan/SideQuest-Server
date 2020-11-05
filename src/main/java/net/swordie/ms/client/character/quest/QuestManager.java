@@ -15,6 +15,7 @@ import net.swordie.ms.life.mob.Mob;
 import net.swordie.ms.loaders.QuestData;
 import net.swordie.ms.loaders.containerclasses.QuestInfo;
 import net.swordie.ms.util.FileTime;
+import org.python.jline.internal.Log;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -121,6 +122,8 @@ public class QuestManager {
      * @param addRewardsFromWz Whether or not to addRewards from the WzFiles
      */
     private void addQuest(Quest quest, boolean addRewardsFromWz) {
+        Log.error("SOMEONE WANTED ME TO ADD A QUEST!!!! - quest id = " + quest.getId());
+        /*
         if(!getQuests().containsKey(quest.getQRKey())) {
             getQuests().put(quest.getQRKey(), quest);
             chr.write(WvsContext.questRecordMessage(quest));
@@ -140,6 +143,7 @@ public class QuestManager {
                 }
             }
         }
+        */
     }
 
     /**
@@ -252,6 +256,8 @@ public class QuestManager {
      * @param id the quest's id to add
      */
     public void addQuest(int id) {
+        Log.error("SOMEONE WANTED ME TO ADD A QUEST!!!! - quest id = " + id);
+
         Quest q = QuestData.createQuestFromId(id);
         if (q != null) {
             addQuest(q);

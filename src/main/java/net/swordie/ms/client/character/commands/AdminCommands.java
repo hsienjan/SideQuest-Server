@@ -6,6 +6,7 @@ import net.swordie.ms.client.User;
 import net.swordie.ms.client.character.Char;
 import net.swordie.ms.client.character.items.Equip;
 import net.swordie.ms.client.character.items.Item;
+import net.swordie.ms.client.character.potential.CharacterPotentialMan;
 import net.swordie.ms.client.character.quest.Quest;
 import net.swordie.ms.client.character.skills.Option;
 import net.swordie.ms.client.character.skills.Skill;
@@ -1338,6 +1339,50 @@ public class AdminCommands {
         }
     }
 
+    @Command(names = {"close"}, requiredType = Tester)
+    public static class CloseCommand extends AdminCommand {
+        public static void execute(Char chr, String[] args) {
+            if (args.length < 2){
+                chr.chatMessage("syntax error: !close <ui number(int)>");
+                return;
+            }
+            chr.closeUI(Integer.parseInt(args[1]));
+        }
+    }
+
+    @Command(names = {"open"}, requiredType = Tester)
+    public static class OpenCommand extends AdminCommand {
+        public static void execute(Char chr, String[] args) {
+            if (args.length < 2){
+                chr.chatMessage("syntax error: !open <ui number(int)>");
+                return;
+            }
+            chr.openUI(Integer.parseInt(args[1]));
+        }
+    }
+
+    @Command(names = {"closerange"}, requiredType = Tester)
+    public static class CloseRangeCommand extends AdminCommand {
+        public static void execute(Char chr, String[] args) {
+            if (args.length < 3){
+                chr.chatMessage("syntax error: !open <ui number(int)>");
+                return;
+            }
+            chr.closeUIRange(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
+        }
+    }
+
+    @Command(names = {"openrange"}, requiredType = Tester)
+    public static class OpenRangeCommand extends AdminCommand {
+        public static void execute(Char chr, String[] args) {
+            if (args.length < 3){
+                chr.chatMessage("syntax error: !open <ui number(int)>");
+                return;
+            }
+            chr.openUIRange(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
+        }
+    }
+
 
     @Command(names = {"goto"}, requiredType = Tester)
     public static class GoTo extends AdminCommand {
@@ -1711,6 +1756,13 @@ public class AdminCommands {
 
         public static void execute(Char chr, String[] args) {
             chr.getScriptManager().openShop(1011100);
+        }
+    }
+
+    @Command(names = {"train", "training", "maps"}, requiredType = Tester)
+    public static class Train extends AdminCommand {
+        public static void execute(Char chr, String[] args) {
+            chr.getScriptManager().openNpc(9200001);
         }
     }
 
@@ -2109,6 +2161,19 @@ public class AdminCommands {
             chr.setFinalJob(Integer.parseInt(args[1]));
         }
     }
+
+    @Command(names = {"setpm"}, requiredType = Admin)
+    public static class SetPMCommand extends AdminCommand {
+        public static void execute(Char chr, String[] args) {
+            CharacterPotentialMan pm = chr.getPotentialMan();
+            Integer integer = Integer.parseInt(args[1]);
+            pm.addPotential(pm.generateRandomPotential(integer.byteValue()));
+        }
+    }
+
+
+
+
 
     /*
     @Command(names = {"balloon"}, requiredType = Admin)
