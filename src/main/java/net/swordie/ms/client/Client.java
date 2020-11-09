@@ -1,5 +1,6 @@
 package net.swordie.ms.client;
 
+import net.swordie.ms.ServerConfig;
 import net.swordie.ms.world.Channel;
 import net.swordie.ms.client.character.Char;
 import net.swordie.ms.connection.OutPacket;

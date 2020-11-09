@@ -63,10 +63,7 @@ import net.swordie.ms.life.Merchant.MerchantItem;
 import net.swordie.ms.life.drop.Drop;
 import net.swordie.ms.life.mob.Mob;
 import net.swordie.ms.life.pet.Pet;
-import net.swordie.ms.loaders.EtcData;
-import net.swordie.ms.loaders.ItemData;
-import net.swordie.ms.loaders.SkillData;
-import net.swordie.ms.loaders.StringData;
+import net.swordie.ms.loaders.*;
 import net.swordie.ms.loaders.containerclasses.AndroidInfo;
 import net.swordie.ms.loaders.containerclasses.ItemInfo;
 import net.swordie.ms.scripts.ScriptInfo;
@@ -3629,6 +3626,8 @@ public class Char {
 			getClient().setChr(null);
 		}
 		DatabaseManager.saveToDB(getAccount());
+		ServerConfig.playersCount--;
+		Server.getInstance().updateWorld();
 	}
 
 	public int getSubJob() {
@@ -5670,6 +5669,22 @@ public class Char {
 				getScriptManager().setJob((short) 10112);
 				this.setFinalJob(-1);
 			}
+		}
+	}
+	// kfir annoying quests
+	public void completeAnnoyingQuests(){
+
+		int[] questIds = {31800, 24010};
+
+		for (int questID : questIds){
+			Quest quest = this.getQuestManager().getQuests().get(questID);
+			if (quest == null) {
+				quest = QuestData.createQuestFromId(questID);
+			}
+			quest.setCompletedTime(FileTime.currentTime());
+			quest.setStatus(QuestStatus.Completed);
+			this.getQuestManager().addQuest(quest);
+			this.write(WvsContext.questRecordMessage(quest));
 		}
 	}
 

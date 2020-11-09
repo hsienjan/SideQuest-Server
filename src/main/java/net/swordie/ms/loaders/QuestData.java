@@ -32,7 +32,6 @@ public class QuestData {
     private static final boolean LOG_UNKS = false;
 
     public static void loadQuestsFromWZ() {
-        Log.error("SOMEONE WANT ME TO LOAD QUESTS");
         String wzDir = String.format("%s/Quest.wz/", ServerConstants.WZ_DIR);
         String checkDir = wzDir + "Check.img.xml";
         File file = new File(checkDir);

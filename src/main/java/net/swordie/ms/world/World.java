@@ -21,7 +21,7 @@ public class World {
 
     private int worldId, worldState, worldEventEXP_WSE, worldEventDrop_WSE, boomUpEventNotice;
     private boolean starplanet;
-    private String name, worldEventDescription;
+    public String name, worldEventDescription;
     private List<Channel> channels;
     private Map<Integer, Party> parties = new HashMap<>();
     private Map<Integer, Guild> guilds = new HashMap<>();

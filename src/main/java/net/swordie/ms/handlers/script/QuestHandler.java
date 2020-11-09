@@ -67,6 +67,7 @@ public class QuestHandler {
             chr.chatMessage(String.format("Could not find quest %d.", questID));
             return;
         }
+        System.out.println("QUEST ID = " + questID);
         QuestInfo qi = QuestData.getQuestInfoById(questID);
         switch (qt) {
             case QuestReq_AcceptQuest:
@@ -117,6 +118,8 @@ public class QuestHandler {
         }
 
          */
+
+
     }
 
     @Handler(op = InHeader.USER_MEDAL_REISSUE_REQUEST)

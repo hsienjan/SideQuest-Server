@@ -717,8 +717,8 @@ public abstract class Job {
 	public void setCharCreationStats(Char chr) {
 		CharacterStat characterStat = chr.getAvatarData().getCharacterStat();
 		characterStat.setLevel(1);
-		characterStat.setStr(12);
-		characterStat.setDex(5);
+		characterStat.setStr(4);
+		characterStat.setDex(4);
 		characterStat.setInt(4);
 		characterStat.setLuk(4);
 		characterStat.setHp(50);
@@ -733,8 +733,5 @@ public abstract class Job {
 		Item manaPot = ItemData.getItemDeepCopy(2000006);
 		manaPot.setQuantity(100);
 		chr.addItemToInventory(manaPot);
-		Item hyperTp = ItemData.getItemDeepCopy(5040004);
-		chr.addItemToInventory(hyperTp);
-
 	}
 }

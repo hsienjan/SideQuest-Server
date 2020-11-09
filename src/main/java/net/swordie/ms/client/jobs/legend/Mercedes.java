@@ -121,16 +121,12 @@ public class Mercedes extends Job {
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);
         chr.getAvatarData().getAvatarLook().setDrawElfEar(true);
-        Item item = ItemData.getItemDeepCopy(1352000); // Secondary
-        item.setBagIndex(BodyPart.Shield.getVal());
-        chr.getEquippedInventory().addItem(item);
 
         Map<Stat, Object> stats = new HashMap<>();
         stats.put(Stat.mhp, chr.getStat(Stat.mhp));
         stats.put(Stat.mmp, chr.getStat(Stat.mmp));
         chr.write(WvsContext.statChanged(stats));
     }
-
 
 
     // Buff related methods --------------------------------------------------------------------------------------------

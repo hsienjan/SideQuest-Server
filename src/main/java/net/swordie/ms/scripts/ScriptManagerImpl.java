@@ -1870,10 +1870,11 @@ public class ScriptManagerImpl implements ScriptManager {
 		Inventory equipInv = chr.getEquipInventory();
 		int bodyPart = ItemConstants.getBodyPartFromItem(id, chr.getAvatarData().getAvatarLook().getGender());
 		Item oldEquip = equipInv.getItemBySlot((short) bodyPart);
+		/*
 		if (oldEquip != null) {
 			chr.unequip(oldEquip);
 			oldEquip.updateToChar(chr);
-		}
+		}*/
 		equip.setBagIndex(bodyPart);
 		chr.equip(equip);
 		equip.updateToChar(chr);
@@ -1971,7 +1972,7 @@ public class ScriptManagerImpl implements ScriptManager {
 		quest.setStatus(QuestStatus.Completed);
 		qm.addQuest(quest);
 		chr.write(WvsContext.questRecordMessage(quest));
-		chr.chatMessage(String.format("Quest %d completed by completeQuestNoRewards", id));
+		//chr.chatMessage(String.format("Quest %d completed by completeQuestNoRewards", id));
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package net.swordie.ms.handlers.user;
 
 import net.swordie.ms.Server;
+import net.swordie.ms.ServerConfig;
 import net.swordie.ms.client.Account;
 import net.swordie.ms.client.Client;
 import net.swordie.ms.client.User;
@@ -30,6 +31,7 @@ import net.swordie.ms.world.field.FieldInstanceType;
 import net.swordie.ms.world.field.Portal;
 import net.swordie.ms.world.shop.cashshop.CashShop;
 import org.apache.log4j.Logger;
+import org.python.jline.internal.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -115,6 +117,8 @@ public class MigrationHandler {
         chr.setOnline(true); // v195+: respect 'invisible login' setting
         chr.getOffenseManager().setChr(chr);
         c.write(WvsContext.setMaplePoint(acc.getNxCredit()));
+        ServerConfig.playersCount++;
+        Server.getInstance().updateWorld();
     }
 
 
@@ -234,6 +238,7 @@ public class MigrationHandler {
             chr.getScriptManager().startScript(portalID, script, ScriptType.Portal);
         } else {
             chr.chatMessage("Could not find that portal.");
+            chr.dispose();
         }
     }
 

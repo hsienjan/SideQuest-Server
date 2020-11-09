@@ -40,7 +40,7 @@ public class Server extends Properties {
 	private static final Server server = new Server();
 
 	private List<World> worldList = new ArrayList<>();
-	private Set<Integer> users = new HashSet<>(); // just save the ids, no need to save the references
+	public Set<Integer> users = new HashSet<>(); // just save the ids, no need to save the references
 	private CashShop cashShop;
 
 	public static Server getInstance() {
@@ -97,6 +97,10 @@ public class Server extends Properties {
 			log.info(String.format("Starting script engine for %s", ScriptManagerImpl.SCRIPT_ENGINE_NAME));
 		}).start();
 
+	}
+
+	public void updateWorld(){
+		worldList.get(worldList.size() - 1).worldEventDescription = "#b#eSideQuest#n v176\r\nOnline: " + ServerConfig.playersCount;
 	}
 
 	private void checkAndCreateDat() {

@@ -1681,7 +1681,7 @@ public class AdminCommands {
     public static class CompleteQuest extends AdminCommand {
 
         public static void execute(Char chr, String[] args) {
-            chr.getQuestManager().completeQuest(Integer.parseInt(args[1]));
+            chr.getScriptManager().completeQuestNoRewards(Integer.parseInt(args[1]));
         }
     }
 
@@ -2043,7 +2043,7 @@ public class AdminCommands {
 
         public static void execute(Char chr, String[] args) {
             String name = args [1];
-            int amount = Integer.valueOf(args [2]);
+            int amount = Integer.parseInt(args [2]);
             Char other = chr.getWorld().getCharByName(name);
             other.addNx(amount);
         }
