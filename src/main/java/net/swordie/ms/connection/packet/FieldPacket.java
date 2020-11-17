@@ -345,16 +345,16 @@ public class FieldPacket {
         outPacket.encodeByte(cs.getNonCombatStatDayLimit().getCharm());
         outPacket.encodeInt(chr.getAccId());
         // FarmUserInfo::Decode
-        outPacket.encodeString("Best farm eu");
-        outPacket.encodeInt(13); // nFarmPoint
-        outPacket.encodeInt(13); // nFarmLevel
-        outPacket.encodeInt(13); // nFarmExp
-        outPacket.encodeInt(13); // nFarmPoint
-        outPacket.encodeInt(13); // nFarmCash
-        outPacket.encodeByte(13); // nFarmGender
-        outPacket.encodeInt(13); // nFarmTheme
-        outPacket.encodeInt(13); // nFarmSlotExtend
-        outPacket.encodeInt(13); // nFarmLockerSlotCount
+        outPacket.encodeString("We are not farmers");
+        outPacket.encodeInt(0); // nFarmPoint
+        outPacket.encodeInt(0); // nFarmLevel
+        outPacket.encodeInt(0); // nFarmExp
+        outPacket.encodeInt(0); // nFarmPoint
+        outPacket.encodeInt(0); // nFarmCash
+        outPacket.encodeByte(0); // nFarmGender
+        outPacket.encodeInt(0); // nFarmTheme
+        outPacket.encodeInt(0); // nFarmSlotExtend
+        outPacket.encodeInt(0); // nFarmLockerSlotCount
         // End FarmUserInfo::Decode
         outPacket.encodeInt(0);
         outPacket.encodeInt(0);

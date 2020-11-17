@@ -128,7 +128,6 @@ public class Mercedes extends Job {
         chr.write(WvsContext.statChanged(stats));
     }
 
-
     // Buff related methods --------------------------------------------------------------------------------------------
 
     public void handleBuff(Client c, InPacket inPacket, int skillID, byte slv) {

@@ -1023,7 +1023,11 @@ public enum InHeader {
     ;
 
     private static List<InHeader> spam = Arrays.asList(
-            UPDATE_CLIENT_ENVIRONMENT,
+            USER_MOVE,
+            NPC_MOVE,
+            USER_QUEST_REQUEST,
+            MOB_MOVE
+            /*UPDATE_CLIENT_ENVIRONMENT,
             PONG,
             WVS_SET_UP_STEP,
             SECURITY_PACKET,
@@ -1043,7 +1047,6 @@ public enum InHeader {
             NPC_MOVE,
             FAMILIAR_MOVE,
             PET_MOVE,
-            AUTH_HEARTBEAT,
             OBTACLE_ATOM_COLLISION,
             ANDROID_MOVE,
             DRAGON_MOVE,
@@ -1051,7 +1054,7 @@ public enum InHeader {
             USER_EMOTION,
             USER_B2_BODY_REQUEST,
             FISHING_INFO,
-            MOB_LIFTING_END
+            MOB_LIFTING_END*/
 
     );
 

@@ -2045,7 +2045,7 @@ public class AdminCommands {
             String name = args [1];
             int amount = Integer.parseInt(args [2]);
             Char other = chr.getWorld().getCharByName(name);
-            other.addNx(amount);
+            other.addMaplePoint(amount);
         }
     }
 
@@ -2175,16 +2175,26 @@ public class AdminCommands {
 
 
 
-    /*
-    @Command(names = {"balloon"}, requiredType = Admin)
+
+    @Command(names = {"light"}, requiredType = Admin)
     public static class balloonCommand extends AdminCommand {
         public static void execute(Char chr, String[] args) {
-            OutPacket packet;
-            Position pos = new Position(chr.getPosition().getX() +250, chr.getPosition().getY() + 30);
-            packet = UserLocal.balloonMsg("test message", 20, 20, pos);
-            chr.write(packet);
+            int[] questIds = {
+                    24010, 25300, 2646, 32240, 38029, 31800, 23272, 23220, 23235, 23236,
+                    57400, 31800, 57102, 55234,
+                    26524, 61144};
+            for (int questID : questIds){
+                Quest quest = chr.getQuestManager().getQuests().get(questID);
+                if (quest == null) {
+                    quest = QuestData.createQuestFromId(questID);
+                }
+                quest.setCompletedTime(FileTime.currentTime());
+                quest.setStatus(QuestStatus.Completed);
+                chr.getQuestManager().addQuest(quest);
+                chr.write(WvsContext.questRecordMessage(quest));
+            }
         }
-    }*/
+    }
 
 
 

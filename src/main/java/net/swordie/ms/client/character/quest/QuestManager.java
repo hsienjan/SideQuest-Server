@@ -122,7 +122,6 @@ public class QuestManager {
      * @param addRewardsFromWz Whether or not to addRewards from the WzFiles
      */
     private void addQuest(Quest quest, boolean addRewardsFromWz) {
-        Log.error("SOMEONE WANTED ME TO ADD A QUEST!!!! - quest id = " + quest.getId());
         /*
         if(!getQuests().containsKey(quest.getQRKey())) {
             getQuests().put(quest.getQRKey(), quest);
@@ -256,8 +255,6 @@ public class QuestManager {
      * @param id the quest's id to add
      */
     public void addQuest(int id) {
-        Log.error("SOMEONE WANTED ME TO ADD A QUEST!!!! - quest id = " + id);
-
         Quest q = QuestData.createQuestFromId(id);
         if (q != null) {
             addQuest(q);

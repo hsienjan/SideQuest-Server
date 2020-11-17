@@ -20,28 +20,43 @@ public class ReactorPool {
         OutPacket outPacket = new OutPacket(OutHeader.REACTOR_CHANGE_STATE);
 
         outPacket.encodeInt(reactor.getObjectId());
-        outPacket.encodeByte(reactor.getState());
+        /*outPacket.encodeByte(reactor.getState());
         outPacket.encodePosition(reactor.getPosition());
         outPacket.encodeShort(delay);
         outPacket.encodeByte(reactor.getProperEventIdx());
         outPacket.encodeByte(stateLength);
         outPacket.encodeInt(reactor.getOwnerID());
 
+         */
+
         return outPacket;
     }
+
+    public static OutPacket reactor_unknown(Reactor reactor) {
+        OutPacket outPacket = new OutPacket(OutHeader.REACTOR_IDK);
+
+        outPacket.encodeInt(reactor.getObjectId());
+
+        return outPacket;
+    }
+
 
     public static OutPacket reactorEnterField(Reactor reactor) {
         OutPacket outPacket = new OutPacket(OutHeader.REACTOR_ENTER_FIELD);
 
         outPacket.encodeInt(reactor.getObjectId());
-        outPacket.encodeInt(reactor.getTemplateId());
+        /*outPacket.encodeInt(reactor.getTemplateId());
         outPacket.encodeByte(reactor.getState());
         outPacket.encodePosition(reactor.getPosition());
         outPacket.encodeByte(reactor.isFlip());
         outPacket.encodeString(reactor.getName());
 
+         */
+
         return outPacket;
     }
+
+
 
     public static OutPacket reactorResetState(Reactor reactor) {
         OutPacket outPacket = new OutPacket(OutHeader.REACTOR_RESET_STATE);
@@ -55,7 +70,7 @@ public class ReactorPool {
         OutPacket outPacket = new OutPacket(OutHeader.REACTOR_OWNER_INFO);
 
         outPacket.encodeInt(reactor.getObjectId());
-        outPacket.encodeInt(reactor.getOwnerID());
+        //outPacket.encodeInt(reactor.getOwnerID());
 
         return outPacket;
     }
@@ -72,8 +87,8 @@ public class ReactorPool {
         OutPacket outPacket = new OutPacket(OutHeader.REACTOR_LEAVE_FIELD);
 
         outPacket.encodeInt(reactor.getObjectId());
-        outPacket.encodeByte(reactor.getState());
-        outPacket.encodePosition(reactor.getPosition());
+        //outPacket.encodeByte(reactor.getState());
+        //outPacket.encodePosition(reactor.getPosition());
 
         return outPacket;
     }

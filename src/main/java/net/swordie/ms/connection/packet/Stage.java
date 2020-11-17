@@ -177,7 +177,7 @@ public class Stage {
     public static OutPacket setCashShop(Char chr, CashShop cashShop) {
         OutPacket outPacket = new OutPacket(OutHeader.SET_CASH_SHOP);
 
-        chr.encode(outPacket, DBChar.All);
+        chr.encode(outPacket, DBChar.All); //CharacterData::Decode
         cashShop.encode(outPacket);
 
         return outPacket;

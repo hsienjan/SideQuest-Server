@@ -117,6 +117,7 @@ public class MigrationHandler {
         chr.setOnline(true); // v195+: respect 'invisible login' setting
         chr.getOffenseManager().setChr(chr);
         c.write(WvsContext.setMaplePoint(acc.getNxCredit()));
+        System.out.println("player count raised, PC = " + ServerConfig.playersCount);
         ServerConfig.playersCount++;
         Server.getInstance().updateWorld();
     }

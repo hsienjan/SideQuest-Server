@@ -1,7 +1,77 @@
-#making firstJob for the new characters
+#making firstJob for the new characters First job Manager
+
+#~~~MAIN WEAPON~~~
+HAND_CANNON = 				1532000
+GUN = 						1492065
+TWO_HANDED_SWORD = 			1402001
+ONE_HANDED_SWORD = 			1302007
+TWO_HANDED_AXE =   			1412001
+ONE_HANDED_AXE =  			1312000
+TWO_HANDED_MACE =  			1422000
+ONE_HANDED_MACE = 			1322000  #LVL 15
+SPEAR =						1432000
+POLE_ARM = 					1442000
+STAFF =						1382000
+WAND = 						1372002 #LVL 18
+BOW = 						1452054
+CROSSBOW = 					1462047
+CLAW = 						1472000
+DAGGER = 					1332007
+KNUCKLE = 					1482000
+SOUL_SHOOTER_AB = 			1222076  #LVL 20
+DUAL_BOWGUNS = 				1522000
+HEAVY_SWORD_ZERO =     		1562000
+LONGS_WORD_ZERO =  			1572000
+KATANA_HAYATO =  			1542000
+DESPERADO_DEMON_AVENGER = 	1232001
+ARM_CANNON_BLASTER =  		1582000
+WHIP_BLADE_XENON =     		1242001
+CANE = 						1362001
+KATARA_DUAL_BLADES =  		1342023
+SHINING_ROD_LUMINOUS =     	1212001
+FAN_KANNA =  				1552000
+BEAST_TAMER_SCEPTER_BT =   	1252001
+PSY_LIMITER_KINESIS = 		1262000
+
+#~~~SECONDARY WEAPON~~~
+PHANTOM_S = 				1352100
+HERO_S = 					1352200
+PALADIN_S = 				1352210
+DARK_KNIGHT_S = 			1352220
+FP_MAGICIAN_S = 			1352230
+IL_MAGICIAN_S =		    	1352240
+BISHOP_S = 			    	1352250
+HUNTER_S =			    	1352260
+CROSSBOWMAN_S = 			1352270
+BANDIT_S =			    	1352280
+ASSASSIN_S = 				1352290
+LUMINOUS_S =				1352400
+KAISER_S =			    	1352500
+ANGELIC_BUSTER_S = 	    	1352600
+MECHANICS_S =    			1352700
+HAYATO_S = 			    	1352800
+BEAST_TAMER_S = 			1352810
+JETT_S = 					1352820
+BRAWLER_S = 				1352900
+GUN_SLINGER_S = 			1352910
+CANNONEER_S =				1352920
+ARAN_S = 					1352930
+EVAN_S = 					1352940
+BATTLE_MAGE_S = 			1352950
+WILD_HUNTER_S =		    	1352960
+CYGNUS_S = 			    	1352970
+MIHILE_S = 			    	1098000
+DEMON_AVENGER_SLAYER_S = 	1099000
+SHADE_S =                   1353100
+
+#~~~USE~~~
+BULLETS = 					2330000
+ARROWS_FOR_BOW = 			2060004
+ARROWS_FOR_CROSSBOW =   	2061004
+THROWING_STARS = 			2070010
+MERCEDES_ARROW = 			1352000
 
 DEMON_SKILLS = [30011109, 30010110, 30010185]
-
 
 finalJobID = sm.getChr().getFinalJob()
 
@@ -32,11 +102,9 @@ def finalJob():
             text += "#b#L0##eBLADE MASTER #l"
             sm.sendNext(text)
             sm.jobAdvance(400)
-            sm.addLevel(10)
-            sm.addAP(50)
             char.setFinalJob(434)
-            sm.giveAndEquip(1332007)
-            sm.giveAndEquip(1342023)
+            sm.giveItem(DAGGER)
+            sm.giveItem(KATARA_DUAL_BLADES)
         #CANNONEER
         elif subJobID == 2:
             text = "#rSelect your #eFINAL JOB:#b\r\n"
@@ -44,8 +112,8 @@ def finalJob():
             sm.sendNext(text)
             sm.jobAdvance(501)
             char.setFinalJob(532)
-            sm.giveAndEquip(1532000)
-            sm.giveAndEquip(1352920)
+            sm.giveItem(HAND_CANNON)
+            sm.giveItem(CANNONEER_S)
         #JETT
         elif subJobID == 10:
             text = "#rSelect your #eFINAL JOB:#b\r\n"
@@ -53,9 +121,9 @@ def finalJob():
             sm.sendNext(text)
             sm.jobAdvance(508)
             char.setFinalJob(572)
-            sm.giveAndEquip(1492065)
-            sm.giveItem(2330000, 4000)
-            sm.giveAndEquip(1352820)
+            sm.giveItem(GUN)
+            sm.giveItem(BULLETS, 4800)
+            sm.giveItem(JETT_S)
         #adventure (warrior, magician, thief, archer)
         else:
             while True:
@@ -64,28 +132,27 @@ def finalJob():
 
                 selection = sm.sendNext(text)
                 text = "#rSelect your #eFINAL JOB:#n\r\n"
-                if (selection == 0):
+                if selection == 0:
                     text += "#b#L0#(FIGHTER => CRUSADER =>) #eHERO#n #l\r\n#L1#(PAGE => WHITEKNIGHT =>) #ePALADIN#n #l\r\n#L2#(SPEARMAN => DRAGONKNIGHT =>) #eDARKKNIGHT#l\r\n#L3##e#rGo Back#l"
                     jobSelection = sm.sendPrev(text)
                     if jobSelection == 0:
                         sm.jobAdvance(100)
                         char.setFinalJob(112)
-                        sm.giveAndEquip(1402001)
-                        sm.giveItem(1412001)
-                        sm.giveAndEquip(1352200)
+                        sm.giveItem(TWO_HANDED_SWORD)
+                        sm.giveItem(TWO_HANDED_AXE)
+                        sm.giveItem(HERO_S)
                     elif jobSelection == 1:
                         sm.jobAdvance(100)
                         char.setFinalJob(122)
-                        sm.giveAndEquip(1402001)
-                        sm.giveItem(1422000)
-                        sm.giveAndEquip(1352210)
+                        sm.giveItem(TWO_HANDED_SWORD)
+                        sm.giveItem(TWO_HANDED_MACE)
+                        sm.giveItem(PALADIN_S)
                     elif jobSelection == 2:
                         sm.jobAdvance(100)
                         char.setFinalJob(132)
-                        sm.giveAndEquip(1432000)
-                        sm.giveItem(1442000)
-                        sm.giveAndEquip(1352220)
-
+                        sm.giveItem(SPEAR)
+                        sm.giveItem(POLE_ARM)
+                        sm.giveItem(DARK_KNIGHT_S)
                     if jobSelection != 3:
                         break
                 elif selection == 1:
@@ -94,18 +161,18 @@ def finalJob():
                     if jobSelection == 0:
                         sm.jobAdvance(200)
                         char.setFinalJob(212)
-                        sm.giveAndEquip(1352230)
+                        sm.giveItem(FP_MAGICIAN_S)
                     elif jobSelection == 1:
                         sm.jobAdvance(200)
                         char.setFinalJob(222)
-                        sm.giveAndEquip(1352240)
+                        sm.giveItem(IL_MAGICIAN_S)
                     elif jobSelection == 2:
                         sm.jobAdvance(200)
                         char.setFinalJob(232)
-                        sm.giveAndEquip(1352250)
+                        sm.giveItem(BISHOP_S)
                     if jobSelection != 3:
-                        sm.giveItem(1382000)
-                        sm.giveItem(1372002)
+                        sm.giveItem(STAFF)
+                        sm.giveItem(WAND)
                         break
                 elif selection == 2:
                     text += "#b#L0#(HUNTER => RANGER =>) #eBOWMASTER#n #l\r\n#L1#(CROSSBOWMAN => SNIPER =>) #eMARKSMAN#n #l\r\n#L2##e#rGo Back#l"
@@ -113,15 +180,15 @@ def finalJob():
                     if jobSelection == 0:
                         sm.jobAdvance(300)
                         char.setFinalJob(312)
-                        sm.giveAndEquip(1452054)
-                        sm.giveItem(2060004, 5000)
-                        sm.giveAndEquip(1352260)
+                        sm.giveItem(BOW)
+                        sm.giveItem(ARROWS_FOR_BOW)
+                        sm.giveItem(HUNTER_S)
                     elif jobSelection == 1:
                         sm.jobAdvance(300)
                         char.setFinalJob(322)
-                        sm.giveAndEquip(1462047)
-                        sm.giveItem(2061004, 5000)
-                        sm.giveAndEquip(1352270)
+                        sm.giveItem(CROSSBOW)
+                        sm.giveItem(ARROWS_FOR_CROSSBOW)
+                        sm.giveItem(CROSSBOWMAN_S)
                     if jobSelection != 2:
                         break
                 elif selection == 3:
@@ -130,14 +197,14 @@ def finalJob():
                     if jobSelection == 0:
                         sm.jobAdvance(400)
                         char.setFinalJob(412)
-                        sm.giveAndEquip(1472000)
-                        sm.giveItem(2070010, 4000)
-                        sm.giveAndEquip(1352290)
+                        sm.giveItem(CLAW)
+                        sm.giveItem(THROWING_STARS, 4800)
+                        sm.giveItem(ASSASSIN_S)
                     elif jobSelection == 1:
                         sm.jobAdvance(400)
                         char.setFinalJob(422)
-                        sm.giveAndEquip(1332007)
-                        sm.giveAndEquip(1352280)
+                        sm.giveItem(DAGGER)
+                        sm.giveItem(BANDIT_S)
                     if jobSelection != 2:
                         break
                 elif selection == 4:
@@ -146,14 +213,14 @@ def finalJob():
                     if jobSelection == 0:
                         sm.jobAdvance(500)
                         char.setFinalJob(512)
-                        sm.giveAndEquip(1482000)
-                        sm.giveAndEquip(1352900)
+                        sm.giveItem(KNUCKLE)
+                        sm.giveItem(BRAWLER_S)
                     elif jobSelection == 1:
                         sm.jobAdvance(500)
                         char.setFinalJob(522)
-                        sm.giveAndEquip(1492065)
-                        sm.giveItem(2330000, 4000)
-                        sm.giveAndEquip(1352910)
+                        sm.giveItem(GUN)
+                        sm.giveItem(BULLETS, 4800)
+                        sm.giveItem(GUN_SLINGER_S)
                     if jobSelection != 2:
                         break
 
@@ -164,14 +231,14 @@ def finalJob():
             text += "#b#L0#DAWN WARRIOR#l\r\n#L1#BLAZE WIZARD#l\r\n#L2#WIND ARCHER#l\r\n#L3#NIGHT WALKER#l\r\n#L4#THUNDER BREAKER#l"
             selection = sm.sendNext(text)
             text = "#rSelect your #eFINAL JOB:#n\r\n"
-            if (selection == 0):
+            if selection == 0:
                 text += "#b#L0##eDAWN WARRIOR#n #l\r\n#L1##e#rGo Back#l"
                 jobSelection = sm.sendPrev(text)
                 if jobSelection == 0:
                     sm.jobAdvance(1100)
                     char.setFinalJob(1112)
-                    sm.giveAndEquip(1402001)
-                    sm.giveAndEquip(1302001)
+                    sm.giveItem(TWO_HANDED_SWORD)
+                    sm.giveItem(ONE_HANDED_SWORD)
 
                     break
             elif selection == 1:
@@ -180,8 +247,8 @@ def finalJob():
                 if jobSelection == 0:
                     sm.jobAdvance(1200)
                     char.setFinalJob(1212)
-                    sm.giveAndEquip(1382000)
-                    sm.giveItem(1372002)
+                    sm.giveItem(STAFF)
+                    sm.giveItem(WAND)
                     break
             elif selection == 2:
                 text += "#b#L0##eWIND ARCHER#n #l\r\n#L1##e#rGo Back#l"
@@ -189,8 +256,8 @@ def finalJob():
                 if jobSelection == 0:
                     sm.jobAdvance(1300)
                     char.setFinalJob(1312)
-                    sm.giveAndEquip(1452054)
-                    sm.giveItem(2060004, 5000)
+                    sm.giveItem(BOW)
+                    sm.giveItem(ARROWS_FOR_BOW)
                     break
             elif selection == 3:
                 text += "#b#L0##eNIGHT WALKER#n #l\r\n#L1##e#rGo Back#l"
@@ -198,8 +265,8 @@ def finalJob():
                 if jobSelection == 0:
                     sm.jobAdvance(1400)
                     char.setFinalJob(1412)
-                    sm.giveAndEquip(1472000)
-                    sm.giveItem(2070010, 4000)
+                    sm.giveItem(CLAW)
+                    sm.giveItem(THROWING_STARS, 4800)
                     break
             elif selection == 4:
                 text += "#b#L0##eTHUNDER BREAKER#n #l\r\n#L1##e#rGo Back#l"
@@ -207,9 +274,9 @@ def finalJob():
                 if jobSelection == 0:
                     sm.jobAdvance(1500)
                     char.setFinalJob(1512)
-                    sm.giveAndEquip(1482000)
+                    sm.giveItem(KNUCKLE)
                     break
-        sm.giveAndEquip(1352970)
+        sm.giveItem(CYGNUS_S)
 
     #ARAN
     elif jobID == 2000:
@@ -218,8 +285,8 @@ def finalJob():
         sm.sendNext(text)
         sm.jobAdvance(2100)
         char.setFinalJob(2112)
-        sm.giveAndEquip(1442000)
-        sm.giveItem(1352930)
+        sm.giveItem(POLE_ARM)
+        sm.giveItem(ARAN_S)
 
     #EVAN
     elif jobID == 2001:
@@ -229,9 +296,9 @@ def finalJob():
         sm.jobAdvance(2210)
         char.setFinalJob(2218)
         sm.setSP(65)
-        sm.giveAndEquip(1382000)
-        sm.giveItem(1372002)
-        sm.giveAndEquip(1352940)
+        sm.giveItem(STAFF)
+        sm.giveItem(WAND)
+        sm.giveItem(EVAN_S)
 
     #MERCEDES - no need to touch the stats.
     elif jobID == 2002:
@@ -240,8 +307,8 @@ def finalJob():
         sm.sendNext(text)
         sm.jobAdvance(2300)
         char.setFinalJob(2312)
-        sm.giveAndEquip(1522000)
-        sm.giveAndEquip(1352000)
+        sm.giveItem(DUAL_BOWGUNS)
+        sm.giveItem(MERCEDES_ARROW)
 
     #PHANTOM - no need to touch the stats.
     elif jobID == 2003:
@@ -250,8 +317,8 @@ def finalJob():
         sm.sendNext(text)
         sm.jobAdvance(2400)
         char.setFinalJob(2412)
-        sm.giveAndEquip(1362001)
-        sm.giveAndEquip(1352100)
+        sm.giveItem(CANE)
+        sm.giveItem(PHANTOM_S)
 
     #SHADE
     elif jobID == 2005:
@@ -260,8 +327,8 @@ def finalJob():
         sm.sendNext(text)
         sm.jobAdvance(2500)
         char.setFinalJob(2512)
-        sm.giveAndEquip(1482000)
-        sm.giveAndEquip(1353100)
+        sm.giveItem(KNUCKLE)
+        sm.giveItem(SHADE_S)
 
     #LUMINOUS
     elif jobID == 2004:
@@ -271,8 +338,8 @@ def finalJob():
         sm.sendAskSelectMenu(0,0)
         sm.jobAdvance(2700)
         char.setFinalJob(2712)
-        sm.giveAndEquip(1212001)
-        sm.giveAndEquip(1352400)
+        sm.giveItem(SHINING_ROD_LUMINOUS)
+        sm.giveItem(LUMINOUS_S)
 
     #DEMON AVENGER/SLAYER
     elif jobID == 3001:
@@ -281,18 +348,17 @@ def finalJob():
         if sm.sendAskSelectMenu(1,0) == 0:
             sm.jobAdvance(3101)
             char.setFinalJob(3122)
-            sm.giveAndEquip(1232001)
+            sm.giveItem(DESPERADO_DEMON_AVENGER)
 
         #DEMON_SLAYER
         else:
             sm.giveSkill(30010112, -1)
             sm.jobAdvance(3100)
             char.setFinalJob(3112)
-            sm.giveAndEquip(1312000)
-            sm.giveAndEquip(1422000)
-            sm.giveAndEquip(1322000)
-
-        sm.giveAndEquip(1099000)
+            sm.giveItem(ONE_HANDED_AXE)
+            sm.giveItem(TWO_HANDED_MACE)
+            sm.giveItem(ONE_HANDED_MACE)
+        sm.giveItem(DEMON_AVENGER_SLAYER_S)
         for i in range(3):
             if not sm.hasSkill(DEMON_SKILLS[i]):
                 sm.giveSkill(DEMON_SKILLS[i])
@@ -305,14 +371,14 @@ def finalJob():
 
             selection = sm.sendNext(text)
             text = "#rSelect your #eFINAL JOB:#n\r\n"
-            if (selection == 0):
+            if selection == 0:
                 text += "#b#L0##eBATTLE MAGE#n #l\r\n#L1##e#rGo Back#l"
                 jobSelection = sm.sendPrev(text)
                 if jobSelection == 0:
                     sm.jobAdvance(3200)
                     char.setFinalJob(3212)
-                    sm.giveAndEquip(1382000)
-                    sm.giveAndEquip(1352950)
+                    sm.giveItem(STAFF)
+                    sm.giveItem(BATTLE_MAGE_S)
                     break
             elif selection == 1:
                 text += "#b#L0##eWILD HUNTER#n #l\r\n#L1##e#rGo Back#l"
@@ -320,9 +386,9 @@ def finalJob():
                 if jobSelection == 0:
                     sm.jobAdvance(3300)
                     char.setFinalJob(3312)
-                    sm.giveAndEquip(1462047)
-                    sm.giveAndEquip(1352960)
-                    sm.giveItem(2061004, 5000)
+                    sm.giveItem(CROSSBOW)
+                    sm.giveItem(WILD_HUNTER_S)
+                    sm.giveItem(ARROWS_FOR_CROSSBOW)
                     break
 
             #elif selection == 2:
@@ -331,8 +397,8 @@ def finalJob():
             #    if jobSelection == 0:
             #        sm.jobAdvance(3500)
             #        char.setFinalJob(3512)
-            #        sm.giveAndEquip(1532000)
-            #        sm.giveAndEquip(1352700)
+            #        sm.giveItem(HAND_CANNON)
+            #        sm.giveItem(MECHANICS_S)
             #        break
             elif selection == 2:
                 text += "#b#L0##eBLASTER#n #l\r\n#L1##e#rGo Back#l"
@@ -340,7 +406,7 @@ def finalJob():
                 if jobSelection == 0:
                     sm.jobAdvance(3700)
                     char.setFinalJob(3712)
-                    sm.giveAndEquip(1582000)
+                    sm.giveItem(ARM_CANNON_BLASTER)
                     break
 
     #XENON
@@ -350,7 +416,7 @@ def finalJob():
         sm.sendNext(text)
         sm.jobAdvance(3600)
         char.setFinalJob(3612)
-        sm.giveAndEquip(1242001)
+        sm.giveItem(WHIP_BLADE_XENON)
 
     #HAYATO
     elif jobID == 4001:
@@ -359,8 +425,8 @@ def finalJob():
         sm.sendNext(text)
         sm.jobAdvance(4100)
         char.setFinalJob(4112)
-        sm.giveAndEquip(1542000)
-        sm.giveAndEquip(1352800)
+        sm.giveItem(KATANA_HAYATO)
+        sm.giveItem(HAYATO_S)
 
     #KANNA
     elif jobID == 4002:
@@ -369,7 +435,7 @@ def finalJob():
         sm.sendNext(text)
         sm.jobAdvance(4200)
         char.setFinalJob(4212)
-        sm.giveAndEquip(1552000)
+        sm.giveItem(FAN_KANNA)
 
 
     #MIHILE
@@ -379,8 +445,8 @@ def finalJob():
         sm.sendNext(text)
         sm.jobAdvance(5100)
         char.setFinalJob(5112)
-        sm.giveAndEquip(1302001)
-        sm.giveAndEquip(1098000)
+        sm.giveItem(ONE_HANDED_SWORD)
+        #sm.giveItem(MIHILE_S)
 
     #KAISER
     elif jobID == 6000:
@@ -389,8 +455,8 @@ def finalJob():
         sm.sendNext(text)
         sm.jobAdvance(6100)
         char.setFinalJob(6112)
-        sm.giveAndEquip(1402001)
-        sm.giveAndEquip(1352500)
+        sm.giveItem(TWO_HANDED_SWORD)
+        sm.giveItem(KAISER_S)
 
     #ANGELIC_BUSTER
     elif jobID == 6001:
@@ -399,10 +465,7 @@ def finalJob():
         sm.sendNext(text)
         sm.jobAdvance(6500)
         char.setFinalJob(6512)
-        sm.addLevel(10)
-        sm.addAP(50)
-        sm.giveAndEquip(1222076)
-        sm.giveAndEquip(1352600)
+        sm.giveItem(SOUL_SHOOTER_AB)
 
     #ZERO
     elif jobID == 10000:
@@ -414,12 +477,12 @@ def finalJob():
         sm.setSTR(300)
         sm.setAP(200)
 
-#NEEDS TO FIX BEAST TAMER
-#        BEAST_TAMER(11000, 11000),
-         #BEAST_TAMER_1(11200, 11000),
-         #BEAST_TAMER_2(11210, 11000),
-         #BEAST_TAMER_3(11211, 11000),
-         #BEAST_TAMER_4(11212, 11000),
+    #NEEDS TO FIX BEAST TAMER
+    #        BEAST_TAMER(11000, 11000),
+    #BEAST_TAMER_1(11200, 11000),
+    #BEAST_TAMER_2(11210, 11000),
+    #BEAST_TAMER_3(11211, 11000),
+    #BEAST_TAMER_4(11212, 11000),
     #BEAST_TAMER
     elif jobID == 11000:
         text = "#rSelect your #eFINAL JOB:#b\r\n"
@@ -427,8 +490,8 @@ def finalJob():
         sm.sendNext(text)
         sm.jobAdvance(11200)
         char.setFinalJob(11212)
-        sm.giveAndEquip(1252001)
-        sm.giveAndEquip(1352810)
+        sm.giveItem(BEAST_TAMER_SCEPTER_BT)
+        sm.giveItem(BEAST_TAMER_S)
 
     #KINESIS
     elif jobID == 14000:
@@ -437,7 +500,7 @@ def finalJob():
         selection = sm.sendNext(text)
         sm.jobAdvance(14200)
         char.setFinalJob(14212)
-        sm.giveAndEquip(1262000)
+        sm.giveItem(PSY_LIMITER_KINESIS)
 
     else:
         sm.sendNext("We will update it later.")

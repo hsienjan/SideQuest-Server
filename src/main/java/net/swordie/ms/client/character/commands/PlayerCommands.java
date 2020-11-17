@@ -41,6 +41,13 @@ public class PlayerCommands {
         }
     }
 
+    @Command(names = {"h", "help", "commands", "command", "npc"}, requiredType = AccountType.Player)
+    public static class help extends PlayerCommand {
+        public static void execute(Char chr, String[] args) {
+            chr.getScriptManager().openNpc(1033103);
+        }
+    }
+
     @Command(names = {"event"}, requiredType = AccountType.Player)
     public static class JoinEvent extends PlayerCommand {
         public static void execute(Char chr, String[] args) {
@@ -52,6 +59,13 @@ public class PlayerCommands {
     public static class Train extends PlayerCommand {
         public static void execute(Char chr, String[] args) {
             chr.getScriptManager().openNpc(9200001);
+        }
+    }
+
+    @Command(names = {"city", "town", "home"}, requiredType = AccountType.Player)
+    public static class Town extends PlayerCommand {
+        public static void execute(Char chr, String[] args) {
+            chr.warp(820000000);
         }
     }
 

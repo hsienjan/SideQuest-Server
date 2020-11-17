@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: net.swordie.ms.Server
+Class-Path: src\main\java\net\swordie\ms
+

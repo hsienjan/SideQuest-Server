@@ -1,5 +1,6 @@
 package net.swordie.ms.connection.packet;
 
+import net.swordie.ms.ServerConfig;
 import net.swordie.ms.client.Account;
 import net.swordie.ms.client.User;
 import net.swordie.ms.client.character.Char;
@@ -309,7 +310,8 @@ public class Login {
 
     public static OutPacket sendDeleteCharacterResult(int charId, LoginType loginType) {
         OutPacket outPacket = new OutPacket(OutHeader.DELETE_CHARACTER_RESULT);
-
+        System.out.println("player count raised, PC = " + ServerConfig.playersCount);
+        ServerConfig.playersCount++;
         outPacket.encodeInt(charId);
         outPacket.encodeByte(loginType.getValue());
 

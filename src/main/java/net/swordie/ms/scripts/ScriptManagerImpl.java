@@ -1848,6 +1848,8 @@ public class ScriptManagerImpl implements ScriptManager {
 		return chr.getMoney();
 	}
 
+	public int getMaplePoints() { return chr.getMaplePoints(); }
+
 	@Override
 	public void giveItem(int id) {
 		giveItem(id, 1);
@@ -1867,19 +1869,28 @@ public class ScriptManagerImpl implements ScriptManager {
 			return;
 		}
 		// replace the old equip if there was any
-		Inventory equipInv = chr.getEquipInventory();
-		int bodyPart = ItemConstants.getBodyPartFromItem(id, chr.getAvatarData().getAvatarLook().getGender());
-		Item oldEquip = equipInv.getItemBySlot((short) bodyPart);
-		/*
+
+        int bodyPart = ItemConstants.getBodyPartFromItem(id, chr.getAvatarData().getAvatarLook().getGender());
+        Item oldEquip = chr.getEquipInventory().getItemBySlot(bodyPart);
+
 		if (oldEquip != null) {
 			chr.unequip(oldEquip);
 			oldEquip.updateToChar(chr);
-		}*/
-		equip.setBagIndex(bodyPart);
+        }
+        equip.setBagIndex(bodyPart);
 		chr.equip(equip);
 		equip.updateToChar(chr);
-	}
 
+    }
+
+    public void unEquip(int id){
+        int bodyPart = ItemConstants.getBodyPartFromItem(id, chr.getAvatarData().getAvatarLook().getGender());
+        Item oldEquip = chr.getEquipInventory().getItemBySlot(bodyPart);
+        if (oldEquip != null) {
+            chr.unequip(oldEquip);
+            oldEquip.updateToChar(chr);
+        }
+    }
 
 	@Override
 	public boolean hasItem(int id) {

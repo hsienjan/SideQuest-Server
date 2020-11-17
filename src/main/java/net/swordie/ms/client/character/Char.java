@@ -2242,13 +2242,13 @@ public class Char {
 	 *
 	 * @param item The Item to equip.
 	 */
-	/*
+
 	public void unequip(Item item) {
 		AvatarLook al = getAvatarData().getAvatarLook();
 		int itemID = item.getItemId();
 		getInventoryByType(EQUIPPED).removeItem(item);
 		getInventoryByType(EQUIP).addItem(item);
-		al.removeItem(itemID);
+		al.removeItem(itemID, item.isCash(), -1);
 		byte maskValue = AvatarModifiedMask.AvatarLook.getVal();
 		getField().broadcastPacket(UserRemote.avatarModified(this, maskValue, (byte) 0), this);
 		if (getTemporaryStatManager().hasStat(SoulMP) && ItemConstants.isWeapon(item.getItemId())) {
@@ -2285,7 +2285,7 @@ public class Char {
 		}
 	}
 
-	 */
+	 /*
 
 	public void unequip(Item item) {
 		AvatarLook al = getAvatarData().getAvatarLook();
@@ -2323,7 +2323,7 @@ public class Char {
 			getTemporaryStatManager().removeStatsBySkill(equippedSummonSkill);
 			getTemporaryStatManager().removeStatsBySkill(getTemporaryStatManager().getOption(RepeatEffect).rOption);
 		}
-	}
+	}*/
 
 	/**
 	 * Equips an {@link Item}. Ensures that the hairEquips and both inventories get updated.
@@ -3626,6 +3626,7 @@ public class Char {
 			getClient().setChr(null);
 		}
 		DatabaseManager.saveToDB(getAccount());
+		System.out.println("player count lowered, PC = " + ServerConfig.playersCount);
 		ServerConfig.playersCount--;
 		Server.getInstance().updateWorld();
 	}
@@ -5235,8 +5236,14 @@ public class Char {
 
 	public void addMaplePoint(int maplePoint) {
 		getUser().addMaplePoints(maplePoint);
-		chatScriptMessage("You have gained " + maplePoint + " MaplePoint.");
+		if (maplePoint > 0){
+			chatScriptMessage("You have gained " + maplePoint + " MaplePoint.");
+		}
 		getClient().write(WvsContext.setMaplePoint(getUser().getMaplePoints()));
+	}
+
+	public int getMaplePoints() {
+		return getUser().getMaplePoints();
 	}
 
 	public void afterMigrate() {
@@ -5674,7 +5681,27 @@ public class Char {
 	// kfir annoying quests
 	public void completeAnnoyingQuests(){
 
-		int[] questIds = {31800, 24010};
+		/* quests to auto complete.
+		Above head quests:
+		31800, 24010, 25300, 2646, 32240, 38029, 31800, 23272, 23220, 23235, 23236,
+		57400, 57461
+		Panel MapleBook quests:
+		59700
+		Panel light bulb quests:
+		5747, 61263, 61145, 12394, 7269, 25940, 34515, 3194, 14950, 21600, 32160, 3116, 30050, 32414, 31072, 1600, 6995, 31200, 13856, 32662, 61133, 15177, 28745, 3138, 3163, 3853, 31851, 3756, 31050,
+		31300, 50722, 57475, 30000, 30202, 30400, 31834, 42009, 56553, 58901, 62100, 62000, 31330, 8165, 20737, 31900, 39200, 17100, 17206, 21500, 12395, 12396, 21300, 28746, 28747, 28748, 28749, 28750,
+		28751, 28752, 28753, 3865, 3866, 3867, 31100, 17101, 17102, 17103, 17104, 17105, 17106, 17107, 17108, 17109, 17110, 17111, 17112, 17113, 17114, 17115, 17116
+		Panel star quests:
+		17200, 28942, 28943, 52930, 10785, 11385, 26424, 26489,
+		Panel golden book quests:
+		25966, 25959, 25964, 25990, 25991, 33565, 25971, 25967, 33567,
+		Panel MaplePoints quests:
+		26524, 61144
+		 */
+		int[] questIds = {
+				24010, 25300, 2646, 32240, 38029, 31800, 23272, 23220, 23235, 23236,
+				57400, 31800, 57102,
+				26524, 61144};
 
 		for (int questID : questIds){
 			Quest quest = this.getQuestManager().getQuests().get(questID);
@@ -5686,6 +5713,7 @@ public class Char {
 			this.getQuestManager().addQuest(quest);
 			this.write(WvsContext.questRecordMessage(quest));
 		}
+
 	}
 
 }

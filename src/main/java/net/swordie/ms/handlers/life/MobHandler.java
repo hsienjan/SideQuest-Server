@@ -263,6 +263,7 @@ public class MobHandler {
             chr.chatMessage("Unhandled mob explosion for your job.");
             return;
         }
+        /*
         Mob mob = (Mob) chr.getField().getLifeByObjectID(mobID);
         if (mob != null) {
             MobTemporaryStat mts = mob.getTemporaryStat();
@@ -277,7 +278,13 @@ public class MobHandler {
                 }
             }
         }
+        */
     }
+    /*@Handler(ops = {InHeader.MOB_LIFTING_END})
+    public static void handleMobLiftingEnd(Char chr, InPacket inPacket) {
+        return;
+    }*/
+
 
     @Handler(op = InHeader.USER_REQUEST_CHANGE_MOB_ZONE_STATE)
     public static void handleUserRequestChangeMobZoneState(Client c, InPacket inPacket) {

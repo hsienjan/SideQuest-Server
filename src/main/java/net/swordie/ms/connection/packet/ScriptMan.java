@@ -16,6 +16,7 @@ public class ScriptMan {
     public static OutPacket scriptMessage(NpcScriptInfo nsi, NpcMessageType nmt) {
         OutPacket outPacket = new OutPacket(OutHeader.SCRIPT_MESSAGE);
 
+
         outPacket.encodeByte(nsi.getSpeakerType());
         int overrideTemplate = nsi.getOverrideSpeakerTemplateID();
         outPacket.encodeInt(overrideTemplate != 0 ? overrideTemplate : nsi.getTemplateID());

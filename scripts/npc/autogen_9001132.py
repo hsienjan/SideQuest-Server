@@ -1,5 +1,5 @@
-# ObjectID: 1000030
-# Character field ID when accessed: 211000000
+# ObjectID: 1000010
 # ParentID: 9001132
-# Object Position X: 1577
-# Object Position Y: -422
+# Character field ID when accessed: 100000000
+# Object Position X: 1834
+# Object Position Y: -132

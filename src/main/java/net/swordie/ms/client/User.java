@@ -160,7 +160,7 @@ public class User {
     }
 
     public int getMaplePoints() {
-        return maplePoints;
+        return this.maplePoints;
     }
 
     public void setMaplePoints(int maplePoints) {

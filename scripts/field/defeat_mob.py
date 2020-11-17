@@ -31,8 +31,8 @@ dict = {
 
 while sm.hasMobsInField():
     mob = sm.waitForMobDeath()
-	mobid = mob.getTemplateId()
+    mobid = mob.getTemplateId()
     if mobid in dict and not dict[mobid][1] in sm.getQRValue(dict[mobid][0]):
         sm.addQRValue(dict[mobid][0], dict[mobid][1])
-		sm.dropItem(CRUSADER_COIN, (dict[mobid][2] * 2) - 5, mob) # crusader coin reward: (stage * 2) - 5
+        sm.dropItem(CRUSADER_COIN, (dict[mobid][2] * 2) - 5, mob) # crusader coin reward: (stage * 2) - 5
 sm.dispose()
