@@ -20,14 +20,14 @@ public class ReactorPool {
         OutPacket outPacket = new OutPacket(OutHeader.REACTOR_CHANGE_STATE);
 
         outPacket.encodeInt(reactor.getObjectId());
-        /*outPacket.encodeByte(reactor.getState());
+        outPacket.encodeByte(reactor.getState());
         outPacket.encodePosition(reactor.getPosition());
         outPacket.encodeShort(delay);
         outPacket.encodeByte(reactor.getProperEventIdx());
         outPacket.encodeByte(stateLength);
         outPacket.encodeInt(reactor.getOwnerID());
 
-         */
+
 
         return outPacket;
     }
@@ -45,13 +45,13 @@ public class ReactorPool {
         OutPacket outPacket = new OutPacket(OutHeader.REACTOR_ENTER_FIELD);
 
         outPacket.encodeInt(reactor.getObjectId());
-        /*outPacket.encodeInt(reactor.getTemplateId());
+        outPacket.encodeInt(reactor.getTemplateId());
         outPacket.encodeByte(reactor.getState());
         outPacket.encodePosition(reactor.getPosition());
         outPacket.encodeByte(reactor.isFlip());
         outPacket.encodeString(reactor.getName());
 
-         */
+
 
         return outPacket;
     }

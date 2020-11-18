@@ -964,7 +964,8 @@ public class AdminCommands {
                 chr.setStatAndSendPacket(Stat.level, (short) num);
                 chr.setStatAndSendPacket(Stat.exp, 0);
                 chr.getJobHandler().handleLevelUp();
-                chr.autoJob();
+                if (chr.getFinalJob() != -1)
+                    chr.autoJob();
                 chr.getField().broadcastPacket(UserRemote.effect(chr.getId(), Effect.levelUpEffect()));
             }
         }
@@ -977,7 +978,8 @@ public class AdminCommands {
             short level = chr.getLevel();
             while (level < num) {
                 level++;
-                chr.autoJob();
+                if (chr.getFinalJob() != -1)
+                    chr.autoJob();
                 chr.setStat(Stat.level, level);
                 Map<Stat, Object> stats = new HashMap<>();
                 stats.put(Stat.level, (byte) level);
@@ -1753,7 +1755,6 @@ public class AdminCommands {
 
     @Command(names = {"shop"}, requiredType = Tester)
     public static class Shop extends AdminCommand {
-
         public static void execute(Char chr, String[] args) {
             chr.getScriptManager().openShop(1011100);
         }

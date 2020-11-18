@@ -622,8 +622,7 @@ public class Aran extends Job {
                     break;
                 case RETURN_TO_RIEN:
                     o1.nValue = si.getValue(x, slv);
-                    Field toField = chr.getOrCreateFieldByCurrentInstanceType(o1.nValue);
-                    chr.warp(toField);
+                    chr.warp(820000000);
                     break;
                 case MAHAS_DOMAIN:
                     SkillInfo mdi = SkillData.getSkillInfoById(MAHAS_DOMAIN);

@@ -289,9 +289,7 @@ public class LoginHandler {
 
     @Handler(op = InHeader.AUTH_HEARTBEAT)
     public static void handleAuthHeartbeatPacket(Client c, InPacket inPacket) {
-        int something = inPacket.decodeInt();
-        log.debug("something in int: " + something);
-
+        //int something = inPacket.decodeInt();
     }
 
     @Handler(op = InHeader.CLIENT_ERROR)

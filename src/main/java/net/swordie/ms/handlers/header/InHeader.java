@@ -1026,7 +1026,8 @@ public enum InHeader {
             USER_MOVE,
             NPC_MOVE,
             USER_QUEST_REQUEST,
-            MOB_MOVE
+            MOB_MOVE,
+            FISHING_INFO
             /*UPDATE_CLIENT_ENVIRONMENT,
             PONG,
             WVS_SET_UP_STEP,
@@ -1053,7 +1054,6 @@ public enum InHeader {
             USER_HIT,
             USER_EMOTION,
             USER_B2_BODY_REQUEST,
-            FISHING_INFO,
             MOB_LIFTING_END*/
 
     );

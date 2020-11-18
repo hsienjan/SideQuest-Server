@@ -137,10 +137,10 @@ public class MigrationHandler {
         int targetField = inPacket.decodeInt();
         if (targetField == 106020100 || targetField == 106020400) {
             // same issue as below, its in mushroom kingdom so maybe the maps are just outdated or w/e
-            targetField = 106020403;
+            targetField = 820000000;
         } else if (targetField == 106020402) {
             // warping from portal in 106020403 is unable to find defined portal (not a scripted portal)
-            targetField = 106020000;
+            targetField = 820000000;
         }
         int x = inPacket.decodeShort();
         int y = inPacket.decodeShort();
@@ -192,7 +192,9 @@ public class MigrationHandler {
                     chr.write(UserLocal.deathCountInfo(deathcount));
                 }
                 chr.setNearestReturnPortal(); // attempt to respawn them where they died.. maybe portal 0 is better tho?
+                Log.debug("dead, but not normal?");
                 chr.warp(chr.getFieldID(), chr.getPreviousPortalID(), false);
+                //chr.warp(820000000);
                 chr.healHPMP();
                 return;
 
@@ -201,11 +203,13 @@ public class MigrationHandler {
             } else if (chr.getTransferField() == targetField && chr.getTransferFieldReq() == chr.getField().getId()) {
                 Field toField = chr.getOrCreateFieldByCurrentInstanceType(chr.getTransferField());
                 if (toField != null && chr.getTransferField() > 0) {
+                    Log.debug("to field?");
                     chr.warp(toField);
                 }
                 chr.setTransferField(0);
                 return;
             } else {
+                Log.debug("normal death?");
                 chr.warp(chr.getOrCreateFieldByCurrentInstanceType(chr.getField().getForcedReturn()));
             }
             chr.healHPMP();

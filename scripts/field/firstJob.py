@@ -287,8 +287,9 @@ def finalJob():
         char.setFinalJob(2112)
         sm.giveItem(POLE_ARM)
         sm.giveItem(ARAN_S)
+        sm.giveSkill(20001295, 1, 1)
 
-    #EVAN
+#EVAN
     elif jobID == 2001:
         text = "#rSelect your #eFINAL JOB:#b\r\n"
         text += "#b#L0#Evan #l"
@@ -308,7 +309,7 @@ def finalJob():
         sm.jobAdvance(2300)
         char.setFinalJob(2312)
         sm.giveItem(DUAL_BOWGUNS)
-        sm.giveItem(MERCEDES_ARROW)
+        sm.giveAndEquip(MERCEDES_ARROW)
 
     #PHANTOM - no need to touch the stats.
     elif jobID == 2003:
@@ -338,8 +339,12 @@ def finalJob():
         sm.sendAskSelectMenu(0,0)
         sm.jobAdvance(2700)
         char.setFinalJob(2712)
+        sm.giveSkill(27000106,5,5)
+        sm.giveSkill(27000207,5,5)
+        sm.giveSkill(27001100,10,10)
+        sm.giveSkill(27001201,10,10)
         sm.giveItem(SHINING_ROD_LUMINOUS)
-        sm.giveItem(LUMINOUS_S)
+        sm.giveAndEquip(LUMINOUS_S)
 
     #DEMON AVENGER/SLAYER
     elif jobID == 3001:
@@ -358,7 +363,7 @@ def finalJob():
             sm.giveItem(ONE_HANDED_AXE)
             sm.giveItem(TWO_HANDED_MACE)
             sm.giveItem(ONE_HANDED_MACE)
-        sm.giveItem(DEMON_AVENGER_SLAYER_S)
+        #sm.giveItem(DEMON_AVENGER_SLAYER_S)
         for i in range(3):
             if not sm.hasSkill(DEMON_SKILLS[i]):
                 sm.giveSkill(DEMON_SKILLS[i])
