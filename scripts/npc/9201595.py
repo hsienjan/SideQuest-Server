@@ -1,4 +1,4 @@
-# Spegelmann (9201595) | Cash Shop Manager
+# Spegelmann (9201595) | Cash Shop Manager kfir
 
 char = sm.getChr()
 maplePoints = char.getMaplePoints()
@@ -37,14 +37,14 @@ sm.sendNext(text)
 while select == 0:
     text = "#b#eWhich cash item do you want to buy ?\r\n"
     text += "#L0#Face Emoji \t\t\tPrice: 1500#l\r\n"
-    text += "#L1#Hat \t\t\t\t\t\t\tPrice: 1500#l\r\n"
+    text += "#L1#Hat \t\t\t\t\t\t\tPrice: 2000#l\r\n"
     text += "#L2#Top \t\t\t\t\t\tPrice: 1500#l\r\n"
     text += "#L3#Pants \t\t\t\t\t\tPrice: 1500#l\r\n"
-    text += "#L4#Overall \t\t\t\t\tPrice: 1500#l\r\n"
-    text += "#L5#Shoes \t\t\t\t\tPrice: 1500#l\r\n"
-    text += "#L6#gloves \t\t\t\t\tPrice: 1500#l\r\n"
-    text += "#L7#Weapons \t\t\t\tPrice: 1500#l\r\n"
-    text += "#L8#Face Accessory \tPrice: 1500#l\r\n"
+    text += "#L4#Overall \t\t\t\t\tPrice: 2500#l\r\n"
+    text += "#L5#Shoes \t\t\t\t\tPrice: 1250#l\r\n"
+    text += "#L6#gloves \t\t\t\t\tPrice: 1250#l\r\n"
+    text += "#L7#Weapons \t\t\t\tPrice: 2500#l\r\n"
+    text += "#L8#Face Accessory \tPrice: 1000#l\r\n"
     text += "#L9#Cape \t\t\t\t\t\tPrice: 1500#l\r\n"
     selection = sm.sendNext(text)
 
@@ -59,9 +59,8 @@ while select == 0:
             sm.sendNext("#eI'm sorry, but you don't have enough Maple Points.")
             select = 0
         else:
-            sm.sendNext("#b#eYou Bought #v" + str(select) + "# Successfully.")
+            sm.sendNext("#b#eYou Bought #v" + str(select) + "# Successfully. \r\n #r-"+ str(price) +" Maple Points.")
             sm.giveItem(select)
             char.addMaplePoint(-price)
 
-sm.sendSayOkay("#b#eBye Beautiful! <3, you selected: ")
 sm.dispose()

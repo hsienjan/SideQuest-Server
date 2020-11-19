@@ -120,6 +120,7 @@ public class NpcHandler {
         NpcShopDlg nsd = chr.getShop();
         if (nsd == null) {
             chr.chatMessage("You are currently not in a shop.");
+            chr.dispose();
             return;
         }
         switch (shr) {
@@ -131,6 +132,7 @@ public class NpcHandler {
                 if (nsi == null || nsi.getItemID() != itemID) {
                     chr.chatMessage("The server's item at that position was different than the client's.");
                     log.warn(String.format("Possible hack: expected shop itemID %d, got %d (chr %d)", nsi.getItemID(), itemID, chr.getId()));
+                    chr.dispose();
                     return;
                 }
                 if (quantity < 0) {
@@ -157,6 +159,7 @@ public class NpcHandler {
                     int amountLeft = buyLimit - amountBought;
                     if (quantity > amountLeft) {
                         chr.chatMessage("Can't buy this item more than " + buyLimit + " times.");
+                        chr.dispose();
                         return;
                     }
                 }
@@ -166,12 +169,14 @@ public class NpcHandler {
                         chr.consumeItem(nsi.getTokenItemID(), cost);
                     } else {
                         chr.write(ShopDlg.shopResult(new MsgShopResult(ShopResultType.NotEnoughMesosMsg)));
+                        chr.dispose();
                         return;
                     }
                 } else {
                     long cost = nsi.getPrice() * quantity;
                     if (chr.getMoney() < cost) {
                         chr.write(ShopDlg.shopResult(new MsgShopResult(ShopResultType.NotEnoughMesosMsg)));
+                        chr.dispose();
                         return;
                     }
                     chr.deductMoney(cost);
@@ -191,6 +196,7 @@ public class NpcHandler {
                 item = chr.getConsumeInventory().getItemBySlot(slot);
                 if (item == null || !ItemConstants.isRechargable(item.getItemId())) {
                     chr.chatMessage(String.format("Was not able to find a rechargable item at position %d.", slot));
+                    chr.dispose();
                     return;
                 }
                 ItemInfo ii = ItemData.getItemInfoByID(item.getItemId());
@@ -213,6 +219,7 @@ public class NpcHandler {
                 item = chr.getInventoryByType(it).getItemBySlot(slot);
                 if (item == null || item.getItemId() != itemID) {
                     chr.chatMessage("Could not find that item.");
+                    chr.dispose();
                     return;
                 }
                 if (quantity < 0) {

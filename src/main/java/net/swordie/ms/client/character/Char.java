@@ -2805,7 +2805,8 @@ public class Char {
 			stats.put(Stat.level, (byte) getStat(Stat.level));
 			getJobHandler().handleLevelUp();
 			level++;
-			autoJob();
+			if (getFinalJob() != -1)
+				autoJob();
 			getField().broadcastPacket(UserRemote.effect(getId(), Effect.levelUpEffect()));
 			heal(getMaxHP());
 			healMP(getMaxMP());
@@ -5270,9 +5271,6 @@ public class Char {
 		//Kfir ZONE! I will make it auto job advanced.
 		int level = this.getLevel();
 		int finalJob = this.getFinalJob();
-		if (finalJob == -1)
-			return;
-
 
 		if (level == 20){
 			String message;

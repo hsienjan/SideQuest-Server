@@ -62,7 +62,7 @@ public class PlayerCommands {
         }
     }
 
-    @Command(names = {"city", "town", "home"}, requiredType = AccountType.Player)
+    @Command(names = {"city", "town", "home", "back"}, requiredType = AccountType.Player)
     public static class Town extends PlayerCommand {
         public static void execute(Char chr, String[] args) {
             chr.warp(820000000);
@@ -91,6 +91,13 @@ public class PlayerCommands {
         public static void execute(Char chr, String[] args) {
             ScriptManagerImpl smi = chr.getScriptManager();
             smi.startScript(0, "inv-seller", ScriptType.Npc);
+        }
+    }
+
+    @Command(names = {"shop", "store"}, requiredType = AccountType.Player)
+    public static class Shop extends PlayerCommand {
+        public static void execute(Char chr, String[] args) {
+            chr.getScriptManager().openShop(1011100);
         }
     }
 }
